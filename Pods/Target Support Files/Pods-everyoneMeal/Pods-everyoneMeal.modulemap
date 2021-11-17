@@ -1,0 +1,6 @@
+framework module Pods_everyoneMeal {
+  umbrella header "Pods-everyoneMeal-umbrella.h"
+
+  export *
+  module * { export * }
+}
