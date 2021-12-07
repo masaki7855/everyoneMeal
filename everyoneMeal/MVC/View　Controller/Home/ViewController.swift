@@ -23,13 +23,13 @@ class HomeViewcontroller:UIViewController,FSCalendarDelegate,FSCalendarDelegateA
         guard let Calendar = calendar else {return}
         
         //1.ホーム　Label
-        let HomeLabel = UILabel()
-        HomeLabel.text = "1.ホーム"
-        HomeLabel.font = UIFont(name: "Optima-Bold", size: 30)
-        HomeLabel.frame = CGRect(x: 200, y: 50, width: 200, height: 50)
-        HomeLabel.textAlignment = NSTextAlignment.center
-        HomeLabel.center.x = self.view.center.x
-        self.view.addSubview(HomeLabel)
+        let hometTitle = UILabel()
+        hometTitle.text = "ホーム"
+        hometTitle.font = UIFont(name: "Optima-Bold", size: 30)
+        hometTitle.frame = CGRect(x: 200, y: 50, width: 200, height: 50)
+        hometTitle.textAlignment = NSTextAlignment.center
+        hometTitle.center.x = self.view.center.x
+        self.view.addSubview(hometTitle)
         
         //FSCalendarのレイアウト
        
@@ -50,23 +50,21 @@ class HomeViewcontroller:UIViewController,FSCalendarDelegate,FSCalendarDelegateA
 
     
 
+
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        /*
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let selectDate = Calendar(identifier: .gregorian)
         let year = selectDate.component(.year, from: date)
         let month = selectDate.component(.month, from: date)
         let day = selectDate.component(.day, from: date)
-        let selectSaveBarDate = "\(year)/\(month)/\(day)です"
- */
+        appDelegate.calendarDate = "\(year)/\(month)/\(day)"
+
 
         let alert = UIAlertController(title: "選択した日付の記録、\nまたは確認をしますか？", message: "", preferredStyle: .alert)
 
         let selectDateSave = UIAlertAction(title: "記録する", style:.default){ (action) in
-            /*
-            let storyboard: UIStoryboard = self.storyboard!
-            let nextView = storyboard.instantiateViewController(identifier: "SelectSaveViewController") as! selectSaveViewcontroller
-            nextView.barDate = selectSaveBarDate
-             */
+            
             self.performSegue(withIdentifier: "toSelectSave", sender: self)
         }
         let selectDateCheck = UIAlertAction(title: "確認する", style: .default){ (action) in
@@ -83,6 +81,7 @@ class HomeViewcontroller:UIViewController,FSCalendarDelegate,FSCalendarDelegateA
 
     }
 
+
 }
 
 
@@ -93,17 +92,18 @@ class selectSaveViewcontroller: HomeViewcontroller {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         //バーに表示
-        self.navigationItem.title = "食事を記録する"
+        self.navigationItem.title = appDelegate.calendarDate
 
         //"朝食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("selectMorningSaveButton:"))
+        makeMealButton.selectSaveVCselectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("selectMorningSaveButton:"))
 
         //"昼食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("selectLunchSaveButton:"))
+        makeMealButton.selectSaveVCselectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("selectLunchSaveButton:"))
 
         //"夕食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("selectDinnerSaveButton:"))
+        makeMealButton.selectSaveVCselectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("selectDinnerSaveButton:"))
         
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -145,22 +145,22 @@ class selectMorningSaveViewcontroller: UIViewController {
         super.viewDidLoad()
         
         //　"メモを記入する"ボタン
-        let saveTextButton = UIButton()
+        let writeInButton = UIButton()
         
-        saveTextButton.setTitle("メモを記入する", for: UIControl.State.normal)
+        writeInButton.setTitle("メモを記入する", for: UIControl.State.normal)
         
-        saveTextButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        writeInButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         
-        saveTextButton.frame = CGRect(x: 200, y: 200, width: 200, height: 50)
-        saveTextButton.center.x = self.view.center.x
+        writeInButton.frame = CGRect(x: 200, y: 550, width: 200, height: 50)
+        writeInButton.center.x = self.view.center.x
         
-        saveTextButton.setTitleColor(UIColor.white, for: .normal)
+        writeInButton.setTitleColor(UIColor.white, for: .normal)
         
-        saveTextButton.backgroundColor = UIColor.gray
+        writeInButton.backgroundColor = UIColor.gray
         
-        saveTextButton.addTarget(self, action: #selector(selectSaveTextButton(_:)), for: .touchUpInside)
+        writeInButton.addTarget(self, action: #selector(selectSaveTextButton(_:)), for: .touchUpInside)
         
-        self.view.addSubview(saveTextButton)
+        self.view.addSubview(writeInButton)
         
         
         //"Back"ボタン　文字非表示
@@ -173,7 +173,7 @@ class selectMorningSaveViewcontroller: UIViewController {
     }
     //"メモを記入する"ボタンのアクション内容　: 画面遷移
     @objc func selectSaveTextButton(_ sender: UIButton){
-        self.performSegue(withIdentifier: "toSaveMemo", sender: self)
+        self.performSegue(withIdentifier: "toSaveMorning", sender: self)
     }
     
     //バー　"閉じる"ボタンのアクション内容
@@ -182,16 +182,60 @@ class selectMorningSaveViewcontroller: UIViewController {
     }
 }
 
-class saveMemoViewcontroller: UIViewController, UITextViewDelegate,UITextFieldDelegate {
+class saveMorningViewcontroller: UIViewController {
     
-    let memo = UITextView()
+    var memo = UITextView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //firestroreからメモのデータを取得する
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        let ref = db.collection("users")
+
+        ref.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }else {
+                for document in querySnapshot!.documents{
+                    print("\(document.documentID) => \(document.data())")
+
+                    let selectMorningMemo = document.data()["\(appDelegate.calendarDate!) morning"] as? String
+
+                    if selectMorningMemo != nil {
+                        self.memo.text = selectMorningMemo
+                    }else {
+                        self.memo.text = "メモを記入する"
+                    }
+                }
+            }
+        }
         
+        //"メモを保存"ボタン
+        let saveMemoButton = UIButton()
+
+        saveMemoButton.setTitle("メモを保存する", for: UIControl.State.normal)
+
+        saveMemoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+
+        saveMemoButton.frame = CGRect(x: 200, y: 650, width: 200, height: 50)
+        saveMemoButton.center.x = self.view.center.x
+
+        saveMemoButton.setTitleColor(UIColor.white, for: .normal)
+
+        saveMemoButton.backgroundColor = UIColor.gray
+
+        saveMemoButton.addTarget(self, action: #selector(saveMemoButtonTapped), for: .touchUpInside)
+
+        self.view.addSubview(saveMemoButton)
+
+
        //メモ記入欄
         
-        memo.frame = CGRect(x: 0, y: 425, width: 350, height: 300)
+        memo.frame = CGRect(x: 0, y: 350, width: 325, height: 250)
         
         memo.center.x = self.view.center.x
         
@@ -227,10 +271,29 @@ class saveMemoViewcontroller: UIViewController, UITextViewDelegate,UITextFieldDe
         self.view.endEditing(true)
     }
     
-    //Firebaseへ　メモを保存
-    
-}
+    //FireStoreへ　メモを保存
 
+
+        @objc func saveMemoButtonTapped() {
+
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        guard let memoData = memo.text else {return}
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+            db.collection("users").document(userID).setData(["\(appDelegate.calendarDate!) morning" : memoData], merge: true) { err in
+            if let err = err {
+                print("エラーが起きました\(err)")
+            } else {
+                print("ドキュメントが保存されました")
+                let saveAlert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
+                saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(saveAlert, animated: true, completion: nil)
+
+            }
+        }
+    }
+
+}
    
     
    

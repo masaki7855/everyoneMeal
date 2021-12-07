@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-func getToday(format:String = "yyyy/MM/dd HH:mm:ss") -> String {
+func getToday(format:String = "y/M/d") -> String {
         let now = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = format

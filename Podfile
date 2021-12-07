@@ -10,7 +10,9 @@ target 'everyoneMeal' do
     pod 'Firebase/Auth'
     
     pod 'Firebase/Firestore'
-    
+
+    pod  'Firebase/Storage'
+
     pod 'FSCalendar'
     pod 'CalculateCalendarLogic'
 end

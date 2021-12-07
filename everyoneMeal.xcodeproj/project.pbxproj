@@ -10,6 +10,7 @@
 		577904DAB946558E2FE4018E /* Pods_everyoneMeal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FB4C7E0762197674550729 /* Pods_everyoneMeal.framework */; };
 		B4016ADE2721A11000D2DE2A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4016ADD2721A11000D2DE2A /* Date.swift */; };
 		B40CA59A273EDB7600B5134A /* selectEachMeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA599273EDB7600B5134A /* selectEachMeal.swift */; };
+		B419F395275A0F79005474A1 /* getMemoDataFromFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419F394275A0F79005474A1 /* getMemoDataFromFirebase.swift */; };
 		B4356C5B27073C59004D7BB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4356C5A27073C59004D7BB1 /* GoogleService-Info.plist */; };
 		B45697902728640000F07C4C /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B456978F2728640000F07C4C /* settingViewController.swift */; };
 		B45F29252725C2AC00DDD078 /* signinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F29242725C2AC00DDD078 /* signinViewController.swift */; };
@@ -29,6 +30,7 @@
 		36FABE7D9572E95F85258B82 /* Pods-everyoneMeal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyoneMeal.release.xcconfig"; path = "Target Support Files/Pods-everyoneMeal/Pods-everyoneMeal.release.xcconfig"; sourceTree = "<group>"; };
 		B4016ADD2721A11000D2DE2A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B40CA599273EDB7600B5134A /* selectEachMeal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectEachMeal.swift; sourceTree = "<group>"; };
+		B419F394275A0F79005474A1 /* getMemoDataFromFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMemoDataFromFirebase.swift; sourceTree = "<group>"; };
 		B4356C5A27073C59004D7BB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B456978F2728640000F07C4C /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
 		B45F29242725C2AC00DDD078 /* signinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signinViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				B4016ADD2721A11000D2DE2A /* Date.swift */,
 				B46CBAFC2732156E00251931 /* activityIndicator.swift */,
 				B40CA599273EDB7600B5134A /* selectEachMeal.swift */,
+				B419F394275A0F79005474A1 /* getMemoDataFromFirebase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,13 +102,45 @@
 		B40EAFE626F9C91E00B813FB /* View　Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B4F5CEC626EA325F00EA4B27 /* ViewController.swift */,
-				B4F6EBB82733BB7F002697FC /* SaveViewController.swift */,
-				B46BBB5B271484E200ECD1E7 /* signupViewController.swift */,
-				B45F29242725C2AC00DDD078 /* signinViewController.swift */,
-				B456978F2728640000F07C4C /* settingViewController.swift */,
+				B419F391274F91A7005474A1 /* Authentication */,
+				B419F38F274F9168005474A1 /* Home */,
+				B419F38E274F914D005474A1 /* Save */,
+				B419F392274F9203005474A1 /* Setting */,
 			);
 			path = "View　Controller";
+			sourceTree = "<group>";
+		};
+		B419F38E274F914D005474A1 /* Save */ = {
+			isa = PBXGroup;
+			children = (
+				B4F6EBB82733BB7F002697FC /* SaveViewController.swift */,
+			);
+			path = Save;
+			sourceTree = "<group>";
+		};
+		B419F38F274F9168005474A1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B4F5CEC626EA325F00EA4B27 /* ViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B419F391274F91A7005474A1 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B45F29242725C2AC00DDD078 /* signinViewController.swift */,
+				B46BBB5B271484E200ECD1E7 /* signupViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		B419F392274F9203005474A1 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B456978F2728640000F07C4C /* settingViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		B4F5CEB626EA325E00EA4B27 = {
@@ -260,6 +295,7 @@
 				B40CA59A273EDB7600B5134A /* selectEachMeal.swift in Sources */,
 				B46BBB5C271484E200ECD1E7 /* signupViewController.swift in Sources */,
 				B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */,
+				B419F395275A0F79005474A1 /* getMemoDataFromFirebase.swift in Sources */,
 				B4F5CEC526EA325E00EA4B27 /* SceneDelegate.swift in Sources */,
 				B45697902728640000F07C4C /* settingViewController.swift in Sources */,
 				B4F6EBB92733BB7F002697FC /* SaveViewController.swift in Sources */,

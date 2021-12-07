@@ -8,16 +8,19 @@
 import UIKit
 import Firebase
 
+let db = Firestore.firestore()
+
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-    
+    var calendarDate: String?
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-
         
         return true
     }
