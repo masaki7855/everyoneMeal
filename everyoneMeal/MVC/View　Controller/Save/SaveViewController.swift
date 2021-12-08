@@ -208,9 +208,24 @@ class todayMorningSaveMemoViewController: UIViewController {
 }
 
 class todayMorningSavePhotoViewController: UIViewController {
+
+    let selectImageView = UIImageView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        selectImageView.frame = CGRect(x: 0, y: 175, width: 275, height: 275)
+        selectImageView.center.x = self.view.center.x
+
+        selectImageView.layer.borderWidth = 2
+
+        selectImageView.layer.borderColor = UIColor.gray.cgColor
+
+        selectImageView.layer.cornerRadius = 5
+
+        self.view.addSubview(selectImageView)
     }
+
 
     func savePhoto () {
         //ストレージサーバーのURL

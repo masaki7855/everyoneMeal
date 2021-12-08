@@ -346,6 +346,7 @@
                     <navigationItem key="navigationItem" id="jf3-zC-wKm"/>
                     <connections>
                         <segue destination="1oB-2x-0Do" kind="show" identifier="toTodayMorningSaveMemo" id="gvW-0t-xBc"/>
+                        <segue destination="Zpu-Gd-1GF" kind="show" identifier="toTodayMorningSavePhoto" id="AeL-K3-D0p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEI-O1-ve5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -499,16 +500,17 @@
             </objects>
             <point key="canvasLocation" x="4132" y="241"/>
         </scene>
-        <!--View Controller-->
+        <!--Today Morning Save Photo View Controller-->
         <scene sceneID="4AD-og-Tzh">
             <objects>
-                <viewController id="Zpu-Gd-1GF" sceneMemberID="viewController">
+                <viewController id="Zpu-Gd-1GF" customClass="todayMorningSavePhotoViewController" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EtZ-Zd-Glg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ksj-xp-bg6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="88L-Fv-RAg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IrE-gt-u20" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
