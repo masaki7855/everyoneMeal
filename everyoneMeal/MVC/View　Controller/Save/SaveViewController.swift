@@ -210,10 +210,12 @@ class todayMorningSaveMemoViewController: UIViewController {
 class todayMorningSavePhotoViewController: UIViewController {
 
     let selectImageView = UIImageView()
+    let imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //選択した写真を表示するView
         selectImageView.frame = CGRect(x: 0, y: 175, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -224,11 +226,30 @@ class todayMorningSavePhotoViewController: UIViewController {
         selectImageView.layer.cornerRadius = 5
 
         self.view.addSubview(selectImageView)
-    }
 
+        //写真を選択する　ボタン
+        let selectPhotoButton = UIButton()
+
+
+
+
+        imagePicker.allowsEditing = true
+
+        imagePicker.sourceType = .photoLibrary
+
+        present(imagePicker, animated: true, completion:
+        nil)
+    }
 
     func savePhoto () {
         //ストレージサーバーのURL
         let storage = Storage.storage().reference(forURL: "gs://everyonemeal.appspot.com")
+    }
+}
+
+extension todayMorningSavePhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    override func viewDidLayoutSubviews() {
+        <#code#>
     }
 }
