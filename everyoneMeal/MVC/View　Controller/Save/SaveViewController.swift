@@ -227,12 +227,49 @@ class todayMorningSavePhotoViewController: UIViewController {
 
         self.view.addSubview(selectImageView)
 
-        //写真を選択する　ボタン
+        //"写真を選択する"ボタン
         let selectPhotoButton = UIButton()
 
+        selectPhotoButton.setTitle("写真を選択する", for: UIControl.State.normal)
+
+        selectPhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+
+        selectPhotoButton.frame = CGRect(x: 200, y: 500, width: 275, height: 50)
+        selectPhotoButton.center.x = self.view.center.x
+
+        selectPhotoButton.setTitleColor(UIColor.white, for: .normal)
+
+        selectPhotoButton.backgroundColor = UIColor.gray
+
+        selectPhotoButton.addTarget(self, action: #selector(toImagePicker), for: .touchUpInside)
+
+        self.view.addSubview(selectPhotoButton)
 
 
+        //"表示している画像で記録する"　ボタン
+        let savePhotoButton = UIButton()
 
+        savePhotoButton.setTitle("表示している画像を記録する", for: UIControl.State.normal)
+
+        savePhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+
+        savePhotoButton.frame = CGRect(x: 200, y: 600, width: 275, height: 50)
+        savePhotoButton.center.x = self.view.center.x
+
+        savePhotoButton.setTitleColor(UIColor.white, for: .normal)
+
+        savePhotoButton.backgroundColor = UIColor.gray
+
+        savePhotoButton.addTarget(self, action: #selector(savePhoto), for: .touchUpInside)
+
+        self.view.addSubview(savePhotoButton)
+
+        imagePicker.delegate = self
+    }
+
+    /*"写真を選択する"ボタンのアクション内容
+    （ライブラリーに移動し写真を選択する）*/
+    @objc func toImagePicker(_ sender: Any) {
         imagePicker.allowsEditing = true
 
         imagePicker.sourceType = .photoLibrary
@@ -240,16 +277,40 @@ class todayMorningSavePhotoViewController: UIViewController {
         present(imagePicker, animated: true, completion:
         nil)
     }
+    @objc func savePhoto () {
 
-    func savePhoto () {
+        guard let userID = Auth.auth().currentUser?.uid else {return}
         //ストレージサーバーのURL
         let storage = Storage.storage().reference(forURL: "gs://everyonemeal.appspot.com")
+
+        let storageRef = storage.child(userID).child("\(getToday(format: "y.M.d")) morning.jpeg")
+
+        let metaData = StorageMetadata()
+
+        var uploadData  = Data()
+
+        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9))!
+
+        storageRef.putData(uploadData, metadata: metaData) {
+            metaData, Error in
+            if Error != nil {
+                print("アップに失敗しました。\(Error.debugDescription)")
+                return
+            }
+        }
     }
 }
 
+//ピックされた画像をビューへ表示する
 extension todayMorningSavePhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    override func viewDidLayoutSubviews() {
-        <#code#>
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            selectImageView.contentMode = .scaleAspectFit
+            selectImageView.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
