@@ -8,6 +8,9 @@
 import UIKit
 import FSCalendar
 import Firebase
+import FirebaseStorage
+import FirebaseStorageUI
+import SDWebImage
 
 class SaveViewController: UIViewController {
 
@@ -212,6 +215,8 @@ class todayMorningSavePhotoViewController: UIViewController {
     let selectImageView = UIImageView()
     let imagePicker = UIImagePickerController()
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -249,7 +254,7 @@ class todayMorningSavePhotoViewController: UIViewController {
         //"表示している画像で記録する"　ボタン
         let savePhotoButton = UIButton()
 
-        savePhotoButton.setTitle("表示している画像を記録する", for: UIControl.State.normal)
+        savePhotoButton.setTitle("表示している画像で記録する", for: UIControl.State.normal)
 
         savePhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
@@ -265,6 +270,23 @@ class todayMorningSavePhotoViewController: UIViewController {
         self.view.addSubview(savePhotoButton)
 
         imagePicker.delegate = self
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        let storage = Storage.storage().reference(forURL: "gs://everyonemeal.appspot.com")
+
+
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+
+        let storageRef = storage.child(userID).child("\(getToday(format: "y.M.d")) morning.jpeg")
+
+        storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if error != nil{
+                print("画像の読み込みに失敗しました。")
+            }else {
+                self.selectImageView.image = UIImage(data: data!)
+                print("画像を読み込みました。")
+            }
+        }
     }
 
     /*"写真を選択する"ボタンのアクション内容
@@ -277,6 +299,7 @@ class todayMorningSavePhotoViewController: UIViewController {
         present(imagePicker, animated: true, completion:
         nil)
     }
+    //firestorageに写真を保存する
     @objc func savePhoto () {
 
         guard let userID = Auth.auth().currentUser?.uid else {return}
@@ -287,6 +310,8 @@ class todayMorningSavePhotoViewController: UIViewController {
 
         let metaData = StorageMetadata()
 
+        metaData.contentType = "image/jpeg"
+
         var uploadData  = Data()
 
         uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9))!
@@ -296,6 +321,8 @@ class todayMorningSavePhotoViewController: UIViewController {
             if Error != nil {
                 print("アップに失敗しました。\(Error.debugDescription)")
                 return
+            }else {
+                print("アップに成功しました。")
             }
         }
     }

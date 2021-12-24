@@ -13,6 +13,8 @@ target 'everyoneMeal' do
 
     pod  'Firebase/Storage'
 
+    pod  'FirebaseUI/Storage'
+
     pod 'FSCalendar'
     pod 'CalculateCalendarLogic'
 end

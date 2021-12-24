@@ -386,6 +386,11 @@ PODS:
   - FirebaseStorage (8.8.0):
     - FirebaseCore (~> 8.0)
     - GTMSessionFetcher/Core (~> 1.5)
+  - FirebaseStorageUI (12.0.0):
+    - FirebaseStorage (~> 8.0)
+    - SDWebImage (~> 5.6)
+  - FirebaseUI/Storage (12.0.2):
+    - FirebaseStorageUI (~> 12.0)
   - FSCalendar (2.8.2)
   - GoogleDataTransport (9.1.0):
     - GoogleUtilities/Environment (~> 7.2)
@@ -438,12 +443,16 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - SDWebImage (5.12.1):
+    - SDWebImage/Core (= 5.12.1)
+  - SDWebImage/Core (5.12.1)
 
 DEPENDENCIES:
   - CalculateCalendarLogic
   - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
+  - FirebaseUI/Storage
   - FSCalendar
 
 SPEC REPOS:
@@ -457,6 +466,8 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - FirebaseStorage
+    - FirebaseStorageUI
+    - FirebaseUI
     - FSCalendar
     - GoogleDataTransport
     - GoogleUtilities
@@ -466,6 +477,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - SDWebImage
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -477,6 +489,8 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: fe77f42da6329d6d83d21fd9d621a6b704413bfc
   FirebaseFirestore: 29baf05d5e7e0d5003eb34e5805d92b9858b36d4
   FirebaseStorage: 54ff752ecbd27f1c354c3f5e8c55f6ad5783699b
+  FirebaseStorageUI: 9f5b32264e77dc073dec45f00c5b3a77e5ca901e
+  FirebaseUI: b04b32ead3a6dcd5a50829e14b8f3f6d044d5d62
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
@@ -486,7 +500,8 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
 
-PODFILE CHECKSUM: 2675e3dcd966cdaf6648a35f523ecec436ae7b49
+PODFILE CHECKSUM: 2734b433a0564953208ae8b974c2cae1a280fb1a
 
 COCOAPODS: 1.11.0
