@@ -36,7 +36,17 @@ class HomeViewcontroller:UIViewController,FSCalendarDelegate,FSCalendarDelegateA
         Calendar.frame = CGRect(x: 0, y: 250, width: view.frame.width, height: 700)
 
         Calendar.center = self.view.center
-        
+
+        Calendar.appearance.headerDateFormat = "YYYY年MM月"
+
+        Calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
+        Calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
+        Calendar.calendarWeekdayView.weekdayLabels[2].text = "火"
+        Calendar.calendarWeekdayView.weekdayLabels[3].text = "水"
+        Calendar.calendarWeekdayView.weekdayLabels[4].text = "木"
+        Calendar.calendarWeekdayView.weekdayLabels[5].text = "金"
+        Calendar.calendarWeekdayView.weekdayLabels[6].text = "土"
+
         Calendar.delegate = self
         
         //"Back"ボタン　文字非表示
@@ -58,6 +68,7 @@ class HomeViewcontroller:UIViewController,FSCalendarDelegate,FSCalendarDelegateA
         let year = selectDate.component(.year, from: date)
         let month = selectDate.component(.month, from: date)
         let day = selectDate.component(.day, from: date)
+        //カレンダーで選択した日付の情報
         appDelegate.calendarDate = "\(year)/\(month)/\(day)"
 
 
@@ -97,13 +108,13 @@ class selectSaveViewcontroller: HomeViewcontroller {
         self.navigationItem.title = appDelegate.calendarDate
 
         //"朝食を記入する"ボタン
-        makeMealButton.selectSaveVCselectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("selectMorningSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("selectMorningSaveButton:"))
 
         //"昼食を記入する"ボタン
-        makeMealButton.selectSaveVCselectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("selectLunchSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("selectLunchSaveButton:"))
 
         //"夕食を記入する"ボタン
-        makeMealButton.selectSaveVCselectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("selectDinnerSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("selectDinnerSaveButton:"))
         
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(

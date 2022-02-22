@@ -26,23 +26,17 @@ class SaveViewController: UIViewController {
         saveTitle.center.x = self.view.center.x
         self.view.addSubview(saveTitle)
 
-        //2.記録する（今日の日付で記録）
+        //今日の日付を表示する
         let SaveLabel = UILabel()
-        SaveLabel.text = "\(getToday())"
-        SaveLabel.font = UIFont(name: "Optima-Bold", size: 25)
-        SaveLabel.frame = CGRect(x: 200, y: 100, width: 250, height: 100)
-        SaveLabel.textAlignment = NSTextAlignment.center
-        SaveLabel.center.x = self.view.center.x
-        self.view.addSubview(SaveLabel)
-
+        getTodayLabel(uiLabel: SaveLabel, uiViewController: self)
         //"朝食を記入する"ボタン
-        makeMealButton.SaveVCselectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("todayMorningSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("todaySaveButton:"))
 
         //"昼食を記入する"ボタン
-        makeMealButton.SaveVCselectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("selectLunchSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("todaySaveButton:"))
 
         //"夕食を記入する"ボタン
-        makeMealButton.SaveVCselectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("selectDinnerSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("todaySaveButton:"))
 
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -53,16 +47,38 @@ class SaveViewController: UIViewController {
         )
 
     }
-    //"今日の朝食を記入する"　ボタンのアクション内容 :画面遷移
-    @objc func todayMorningSaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectTodayMorningSave", sender: self)
+    //"各食を記入する"　ボタンのアクション内容 :画面遷移
+    @objc func todaySaveButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSelectTodaySave", sender: self)
     }
 }
 
-class selectTodayMorningSaveViewController: UIViewController{
+class selectTodaySaveViewController: cameraViewcontroller {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //今日の日付を表示する
+        let SaveLabel = UILabel()
+        getTodayLabel(uiLabel: SaveLabel, uiViewController: self)
+
+        //　"写真を撮影する"ボタン
+        let takePicturesAndSave = UIButton()
+
+        takePicturesAndSave.setTitle("写真を撮影する", for: UIControl.State.normal)
+
+        takePicturesAndSave.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+
+        takePicturesAndSave.frame = CGRect(x: 200, y: 350, width: 200, height: 50)
+        takePicturesAndSave.center.x = self.view.center.x
+
+        takePicturesAndSave.setTitleColor(UIColor.white, for: .normal)
+
+        takePicturesAndSave.backgroundColor = UIColor.gray
+
+        takePicturesAndSave.addTarget(self, action: #selector(callUiimagePickerController(_:)), for: .touchUpInside)
+
+        self.view.addSubview(takePicturesAndSave)
 
         //　"メモを記入する"ボタン
         let writeInButton = UIButton()
@@ -89,7 +105,7 @@ class selectTodayMorningSaveViewController: UIViewController{
 
         selectSavePhoto.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
-        selectSavePhoto.frame = CGRect(x: 200, y: 350, width: 200, height: 50)
+        selectSavePhoto.frame = CGRect(x: 200, y: 450, width: 200, height: 50)
         selectSavePhoto.center.x = self.view.center.x
 
         selectSavePhoto.setTitleColor(UIColor.white, for: .normal)
@@ -123,13 +139,32 @@ class selectTodayMorningSaveViewController: UIViewController{
 class todayMorningSaveMemoViewController: UIViewController {
 
     var memo = UITextView()
-    
+    let selectImageView = UIImageView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+       
+
+        //選択した写真を表示するView
+        selectImageView.frame = CGRect(x: 0, y: 120, width: 275, height: 275)
+        selectImageView.center.x = self.view.center.x
+
+        selectImageView.layer.borderWidth = 2
+
+        selectImageView.layer.borderColor = UIColor.gray.cgColor
+
+        selectImageView.layer.cornerRadius = 5
+
+        self.view.addSubview(selectImageView)
 
         //firestroreからメモのデータを取得する
 
         getMemoDataFromFirebase(memo: self.memo)
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+    getPhotoDataFromFireStorage(photo: selectImageView)
+
 
         //"メモを保存する"ボタン
         let saveMemoButton = UIButton()
@@ -138,20 +173,22 @@ class todayMorningSaveMemoViewController: UIViewController {
 
         saveMemoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
-        saveMemoButton.frame = CGRect(x: 200, y: 650, width: 200, height: 50)
+        saveMemoButton.frame = CGRect(x: 200, y: 700, width: 200, height: 50)
         saveMemoButton.center.x = self.view.center.x
 
         saveMemoButton.setTitleColor(UIColor.white, for: .normal)
 
         saveMemoButton.backgroundColor = UIColor.gray
 
-        saveMemoButton.addTarget(self, action: #selector(saveMemoButtonTapped), for: .touchUpInside)
+        saveMemoButton.addTarget(self, action: #selector(saveMemoToFirestore(_:)), for: .touchUpInside)
 
         self.view.addSubview(saveMemoButton)
 
+        
+
         //メモ記入欄
 
-         memo.frame = CGRect(x: 0, y: 350, width: 325, height: 250)
+         memo.frame = CGRect(x: 0, y: 420, width: 325, height: 250)
 
          memo.center.x = self.view.center.x
 
@@ -187,27 +224,27 @@ class todayMorningSaveMemoViewController: UIViewController {
     }
     
     //FireStoreへ　メモを保存
+    @objc func saveMemoToFirestore(_ sender: UIButton) {
 
 
-        @objc func saveMemoButtonTapped() {
-
-        guard let userID = Auth.auth().currentUser?.uid else {return}
+    guard let userID = Auth.auth().currentUser?.uid else {return}
         guard let memoData = memo.text else {return}
 
-            db.collection("users").document(userID).setData(["\(getToday()) morning" : memoData], merge: true) { err in
-            if let err = err {
-                print("エラーが起きました\(err)")
-            } else {
-                print("ドキュメントが保存されました")
-                
-                //保存時にアラート表示
-                let saveAlert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
-                saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(saveAlert, animated: true, completion: nil)
+        db.collection("users").document(userID).setData(["\(getToday()) morning" : memoData], merge: true) { err in
+        if let err = err {
+            print("エラーが起きました\(err)")
+        } else {
+            print("ドキュメントが保存されました")
 
-            }
+            //保存時にアラート表示
+            let saveAlert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
+            saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(saveAlert, animated: true, completion: nil)
+
         }
     }
+}
+        
 }
 
 class todayMorningSavePhotoViewController: UIViewController {
@@ -272,21 +309,8 @@ class todayMorningSavePhotoViewController: UIViewController {
         imagePicker.delegate = self
 
         //データ取得（保存している画像があれば読み込み、表示する）
-        let storage = Storage.storage().reference(forURL: "gs://everyonemeal.appspot.com")
+    getPhotoDataFromFireStorage(photo: selectImageView)
 
-
-        guard let userID = Auth.auth().currentUser?.uid else {return}
-
-        let storageRef = storage.child(userID).child("\(getToday(format: "y.M.d")) morning.jpeg")
-
-        storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            if error != nil{
-                print("画像の読み込みに失敗しました。")
-            }else {
-                self.selectImageView.image = UIImage(data: data!)
-                print("画像を読み込みました。")
-            }
-        }
     }
 
     /*"写真を選択する"ボタンのアクション内容
@@ -323,6 +347,12 @@ class todayMorningSavePhotoViewController: UIViewController {
                 return
             }else {
                 print("アップに成功しました。")
+
+                //保存時にアラート表示
+                let saveAlert = UIAlertController(title: "写真を記録しました", message: "", preferredStyle: .alert)
+                saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(saveAlert, animated: true, completion: nil)
+
             }
         }
     }

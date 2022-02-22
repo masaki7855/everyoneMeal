@@ -15,6 +15,17 @@ func getToday(format:String = "y/M/d") -> String {
         return formatter.string(from: now as Date)
     }
 
+//今日の日付を表示する
+func getTodayLabel(uiLabel: UILabel,uiViewController: UIViewController) {
+    uiLabel.text = "\(getToday())"
+    uiLabel.font = UIFont(name: "Optima-Bold", size: 25)
+    uiLabel.frame = CGRect(x: 200, y: 100, width: 250, height: 100)
+    uiLabel.textAlignment = NSTextAlignment.center
+    uiLabel.center.x = uiViewController.view.center.x
+    uiViewController.view.addSubview(uiLabel)
+}
+
+
 
 
 

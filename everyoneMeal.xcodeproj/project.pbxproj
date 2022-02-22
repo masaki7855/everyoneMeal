@@ -16,6 +16,9 @@
 		B45F29252725C2AC00DDD078 /* signinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F29242725C2AC00DDD078 /* signinViewController.swift */; };
 		B46BBB5C271484E200ECD1E7 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BBB5B271484E200ECD1E7 /* signupViewController.swift */; };
 		B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46CBAFC2732156E00251931 /* activityIndicator.swift */; };
+		B4D82C9C277C7A9100741270 /* getPhotoDataFromFirestorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */; };
+		B4D82C9E27870B5700741270 /* takePictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D82C9D27870B5700741270 /* takePictures.swift */; };
+		B4EF500027ABCE3200D9AEC5 /* CheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EF4FFF27ABCE3200D9AEC5 /* CheckViewController.swift */; };
 		B4F5CEC326EA325E00EA4B27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F5CEC226EA325E00EA4B27 /* AppDelegate.swift */; };
 		B4F5CEC526EA325E00EA4B27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F5CEC426EA325E00EA4B27 /* SceneDelegate.swift */; };
 		B4F5CEC726EA325F00EA4B27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F5CEC626EA325F00EA4B27 /* ViewController.swift */; };
@@ -36,6 +39,9 @@
 		B45F29242725C2AC00DDD078 /* signinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signinViewController.swift; sourceTree = "<group>"; };
 		B46BBB5B271484E200ECD1E7 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		B46CBAFC2732156E00251931 /* activityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = activityIndicator.swift; sourceTree = "<group>"; };
+		B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPhotoDataFromFirestorage.swift; sourceTree = "<group>"; };
+		B4D82C9D27870B5700741270 /* takePictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takePictures.swift; sourceTree = "<group>"; };
+		B4EF4FFF27ABCE3200D9AEC5 /* CheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewController.swift; sourceTree = "<group>"; };
 		B4F5CEBF26EA325E00EA4B27 /* everyoneMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = everyoneMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F5CEC226EA325E00EA4B27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4F5CEC426EA325E00EA4B27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +101,8 @@
 				B46CBAFC2732156E00251931 /* activityIndicator.swift */,
 				B40CA599273EDB7600B5134A /* selectEachMeal.swift */,
 				B419F394275A0F79005474A1 /* getMemoDataFromFirebase.swift */,
+				B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */,
+				B4D82C9D27870B5700741270 /* takePictures.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -105,6 +113,7 @@
 				B419F391274F91A7005474A1 /* Authentication */,
 				B419F38F274F9168005474A1 /* Home */,
 				B419F38E274F914D005474A1 /* Save */,
+				B4EF4FFE27ABCDDC00D9AEC5 /* Check */,
 				B419F392274F9203005474A1 /* Setting */,
 			);
 			path = "View　Controller";
@@ -141,6 +150,14 @@
 				B456978F2728640000F07C4C /* settingViewController.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		B4EF4FFE27ABCDDC00D9AEC5 /* Check */ = {
+			isa = PBXGroup;
+			children = (
+				B4EF4FFF27ABCE3200D9AEC5 /* CheckViewController.swift */,
+			);
+			path = Check;
 			sourceTree = "<group>";
 		};
 		B4F5CEB626EA325E00EA4B27 = {
@@ -291,10 +308,13 @@
 			files = (
 				B4F5CEC726EA325F00EA4B27 /* ViewController.swift in Sources */,
 				B4016ADE2721A11000D2DE2A /* Date.swift in Sources */,
+				B4EF500027ABCE3200D9AEC5 /* CheckViewController.swift in Sources */,
 				B4F5CEC326EA325E00EA4B27 /* AppDelegate.swift in Sources */,
 				B40CA59A273EDB7600B5134A /* selectEachMeal.swift in Sources */,
 				B46BBB5C271484E200ECD1E7 /* signupViewController.swift in Sources */,
+				B4D82C9C277C7A9100741270 /* getPhotoDataFromFirestorage.swift in Sources */,
 				B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */,
+				B4D82C9E27870B5700741270 /* takePictures.swift in Sources */,
 				B419F395275A0F79005474A1 /* getMemoDataFromFirebase.swift in Sources */,
 				B4F5CEC526EA325E00EA4B27 /* SceneDelegate.swift in Sources */,
 				B45697902728640000F07C4C /* settingViewController.swift in Sources */,

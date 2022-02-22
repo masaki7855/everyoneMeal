@@ -9,27 +9,28 @@ import UIKit
 import FSCalendar
 import Firebase
 
-//firestroreからメモのデータを取得する
+//firestoreからメモのデータを取得する
 func getMemoDataFromFirebase(memo:UITextView) {
 
-let ref = db.collection("users")
+guard let userID = Auth.auth().currentUser?.uid else {return}
 
-ref.getDocuments { (querySnapshot, error) in
-    if let error = error {
-        print(error)
-        return
-    }else {
-        for document in querySnapshot!.documents{
-            print("\(document.documentID) => \(document.data())")
+    let ref = db.collection("users").document(userID)
 
-            let MorningMemo = document.data()["\(getToday()) morning"] as? String
+    ref.getDocument { (document, error) in
+        if let document = document, document.exists {
+            let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+            print("Document data: \(dataDescription)")
+        } else {
+            print("Document does not exist")
+        }
+        let MorningMemo = document?.data()?["\(getToday()) morning"] as? String
 
-            if MorningMemo != nil {
-                memo.text = MorningMemo
-            }else {
-                memo.text = "メモを記入する"
-            }
+        if MorningMemo != nil {
+            memo.text = MorningMemo
+        }else {
+            memo.text = "メモを記入する"
         }
     }
+
 }
-}
+

@@ -11,7 +11,7 @@ import FSCalendar
 class selectMealButton: UIViewController {
 
 
-    func selectSaveVCselectMeal(selectSaveClass: selectSaveViewcontroller,meal: String, frameX: Int, frameY: Int, selectEachMeal: Selector) {
+    func selectMeal(selectSaveClass: UIViewController,meal: String, frameX: Int, frameY: Int, selectEachMeal: Selector) {
         
         let selectSaveButton = UIButton()
 
