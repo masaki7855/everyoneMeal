@@ -28,6 +28,7 @@ class CheckViewController: UIViewController {
         saveTitle.center.x = self.view.center.x
         self.CheckScrollView.addSubview(saveTitle)
 
+        
         //今日の日付を表示する
         let SaveLabel = UILabel()
         SaveLabel.text = "\(getToday())"

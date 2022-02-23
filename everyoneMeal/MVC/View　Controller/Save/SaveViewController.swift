@@ -27,8 +27,8 @@ class SaveViewController: UIViewController {
         self.view.addSubview(saveTitle)
 
         //今日の日付を表示する
-        let SaveLabel = UILabel()
-        getTodayLabel(uiLabel: SaveLabel, uiViewController: self)
+        let TodayLabel = UILabel()
+        getTodayLabel(uiLabel: TodayLabel, uiViewController: self)
         //"朝食を記入する"ボタン
         makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("todaySaveButton:"))
 

@@ -104,9 +104,10 @@ class selectSaveViewcontroller: HomeViewcontroller {
         super.viewDidLoad()
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        //バーに表示
-        self.navigationItem.title = appDelegate.calendarDate
-
+        //選択した日付を表示する
+        let selectDay = UILabel()
+        selectDayLabel(uiLabel: selectDay, uiViewController: self)
+        
         //"朝食を記入する"ボタン
         makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("selectMorningSaveButton:"))
 
