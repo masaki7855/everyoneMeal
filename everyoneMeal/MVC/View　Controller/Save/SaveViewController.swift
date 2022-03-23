@@ -69,7 +69,7 @@ class selectTodaySaveViewController: cameraViewcontroller {
 
         takePicturesAndSave.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
-        takePicturesAndSave.frame = CGRect(x: 200, y: 350, width: 200, height: 50)
+        takePicturesAndSave.frame = CGRect(x: 200, y: 250, width: 200, height: 50)
         takePicturesAndSave.center.x = self.view.center.x
 
         takePicturesAndSave.setTitleColor(UIColor.white, for: .normal)
@@ -87,7 +87,7 @@ class selectTodaySaveViewController: cameraViewcontroller {
 
         writeInButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
-        writeInButton.frame = CGRect(x: 200, y: 550, width: 200, height: 50)
+        writeInButton.frame = CGRect(x: 200, y: 450, width: 200, height: 50)
         writeInButton.center.x = self.view.center.x
 
         writeInButton.setTitleColor(UIColor.white, for: .normal)
@@ -105,7 +105,7 @@ class selectTodaySaveViewController: cameraViewcontroller {
 
         selectSavePhoto.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
-        selectSavePhoto.frame = CGRect(x: 200, y: 450, width: 200, height: 50)
+        selectSavePhoto.frame = CGRect(x: 200, y: 350, width: 200, height: 50)
         selectSavePhoto.center.x = self.view.center.x
 
         selectSavePhoto.setTitleColor(UIColor.white, for: .normal)
@@ -138,6 +138,7 @@ class selectTodaySaveViewController: cameraViewcontroller {
 
 class todayMorningSaveMemoViewController: UIViewController {
 
+    var eachMeal = "\(getToday()) morning"
     var memo = UITextView()
     let selectImageView = UIImageView()
 
@@ -160,7 +161,7 @@ class todayMorningSaveMemoViewController: UIViewController {
 
         //firestroreからメモのデータを取得する
 
-        getMemoDataFromFirebase(memo: self.memo)
+        getMemoDataFromFirebase(eachMeal: self.eachMeal,memo: self.memo)
 
         //データ取得（保存している画像があれば読み込み、表示する）
     getPhotoDataFromFireStorage(photo: selectImageView)

@@ -276,10 +276,10 @@
             </objects>
             <point key="canvasLocation" x="1688" y="-1398"/>
         </scene>
-        <!--Select Save Viewcontroller-->
+        <!--Select Each Meal Viewcontroller-->
         <scene sceneID="MFF-gc-VBN">
             <objects>
-                <viewController storyboardIdentifier="SelectSaveViewController" id="WT0-3b-jRK" customClass="selectSaveViewcontroller" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectSaveViewController" id="WT0-3b-jRK" customClass="selectEachMealViewcontroller" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dM5-Du-Inf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -288,17 +288,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="IMH-mU-awa"/>
                     <connections>
-                        <segue destination="5MY-oO-TAQ" kind="show" identifier="toSelectMorningSave" id="fYv-Td-r4t"/>
+                        <segue destination="5MY-oO-TAQ" kind="show" identifier="toSelectSaveMenu" id="fYv-Td-r4t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogE-h7-37Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2790" y="-1398"/>
         </scene>
-        <!--Select Morning Save Viewcontroller-->
+        <!--Select Save Menu Viewcontroller-->
         <scene sceneID="myu-N2-GXl">
             <objects>
-                <viewController id="5MY-oO-TAQ" customClass="selectMorningSaveViewcontroller" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5MY-oO-TAQ" customClass="selectSaveMenuViewcontroller" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="elg-9s-LBi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -96,7 +96,7 @@ class HomeViewcontroller:UIViewController,FSCalendarDelegate,FSCalendarDelegateA
 }
 
 
-class selectSaveViewcontroller: HomeViewcontroller {
+class selectEachMealViewcontroller: HomeViewcontroller {
 
     var leftButtonBack: UIBarButtonItem!
 
@@ -109,13 +109,13 @@ class selectSaveViewcontroller: HomeViewcontroller {
         selectDayLabel(uiLabel: selectDay, uiViewController: self)
         
         //"朝食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("selectMorningSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("selectDaySaveButton:"))
 
         //"昼食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("selectLunchSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("selectDaySaveButton:"))
 
         //"夕食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("selectDinnerSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("selectDaySaveButton:"))
         
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -126,19 +126,9 @@ class selectSaveViewcontroller: HomeViewcontroller {
         )
     }
     
-    // "朝食を記入する"　ボタンのアクション内容 :画面遷移
-    @objc func selectMorningSaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectMorningSave", sender: self)
-    }
-
-    //"昼食を記入する"　ボタンのアクション内容 :画面遷移
-    @objc func selectLunchSaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectMorningSave", sender: self)
-    }
-
-    //"夕食を記入する"　ボタンのアクション内容 :画面遷移
-    @objc func selectDinnerSaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectMorningSave", sender: self)
+    // "各食を記入する"　ボタンのアクション内容 :画面遷移
+    @objc func selectDaySaveButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSelectSaveMenu", sender: self)
     }
     
     //”戻る”　ボタンのアクション内容
@@ -148,31 +138,73 @@ class selectSaveViewcontroller: HomeViewcontroller {
     
 }
 
-class selectMorningSaveViewcontroller: UIViewController {
+class selectSaveMenuViewcontroller: cameraViewcontroller {
     
     var leftButtonClose: UIBarButtonItem!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //選択した日付を表示する
+
+        let selectDay = UILabel()
+        selectDayLabel(uiLabel: selectDay, uiViewController: self)
         
+        //　"写真を撮影する"ボタン
+        let takePicturesAndSave = UIButton()
+
+        takePicturesAndSave.setTitle("写真を撮影する", for: UIControl.State.normal)
+
+        takePicturesAndSave.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+
+        takePicturesAndSave.frame = CGRect(x: 200, y: 250, width: 200, height: 50)
+        takePicturesAndSave.center.x = self.view.center.x
+
+        takePicturesAndSave.setTitleColor(UIColor.white, for: .normal)
+
+        takePicturesAndSave.backgroundColor = UIColor.gray
+
+        takePicturesAndSave.addTarget(self, action: #selector(callUiimagePickerController(_:)), for: .touchUpInside)
+
+        self.view.addSubview(takePicturesAndSave)
+
         //　"メモを記入する"ボタン
         let writeInButton = UIButton()
-        
+
         writeInButton.setTitle("メモを記入する", for: UIControl.State.normal)
-        
+
         writeInButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        
-        writeInButton.frame = CGRect(x: 200, y: 550, width: 200, height: 50)
+
+        writeInButton.frame = CGRect(x: 200, y: 450, width: 200, height: 50)
         writeInButton.center.x = self.view.center.x
-        
+
         writeInButton.setTitleColor(UIColor.white, for: .normal)
-        
+
         writeInButton.backgroundColor = UIColor.gray
-        
+
         writeInButton.addTarget(self, action: #selector(selectSaveTextButton(_:)), for: .touchUpInside)
-        
+
         self.view.addSubview(writeInButton)
+
+        //　"写真を選択する"ボタン
+        let selectSavePhoto = UIButton()
+
+        selectSavePhoto.setTitle("写真を選択する", for: UIControl.State.normal)
+
+        selectSavePhoto.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+
+        selectSavePhoto.frame = CGRect(x: 200, y: 350, width: 200, height: 50)
+        selectSavePhoto.center.x = self.view.center.x
+
+        selectSavePhoto.setTitleColor(UIColor.white, for: .normal)
+
+        selectSavePhoto.backgroundColor = UIColor.gray
+
+        selectSavePhoto.addTarget(self, action: #selector(selectSavePhotoButton(_:)), for: .touchUpInside)
+
+        self.view.addSubview(selectSavePhoto)
         
         
         //"Back"ボタン　文字非表示
@@ -183,9 +215,15 @@ class selectMorningSaveViewcontroller: UIViewController {
             action: nil
         )
     }
+
     //"メモを記入する"ボタンのアクション内容　: 画面遷移
     @objc func selectSaveTextButton(_ sender: UIButton){
-        self.performSegue(withIdentifier: "toSaveMorning", sender: self)
+        self.performSegue(withIdentifier: "", sender: self)
+    }
+
+    //"写真を選択する"ボタンのアクション内容　: 画面遷移
+    @objc func selectSavePhotoButton(_ sender: UIButton){
+        self.performSegue(withIdentifier: "", sender: self)
     }
     
     //バー　"閉じる"ボタンのアクション内容
