@@ -14,11 +14,11 @@ import SDWebImage
 //fireStorageから写真のデータを取得する
 let storage = Storage.storage().reference(forURL: "gs://everyonemeal.appspot.com")
 
-func getPhotoDataFromFireStorage (photo:UIImageView){
+func getPhotoDataFromFireStorage (eachMealPhotoData:String,photo:UIImageView){
 
     guard let userID = Auth.auth().currentUser?.uid else {return}
 
-let storageRef = storage.child(userID).child("\(getToday(format: "y.M.d")) morning.jpeg")
+let storageRef = storage.child(userID).child(eachMealPhotoData)
 
     storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
         if error != nil{

@@ -138,8 +138,10 @@ class selectTodaySaveViewController: cameraViewcontroller {
 
 class todayMorningSaveMemoViewController: UIViewController {
 
+    
     var eachMeal = "\(getToday()) morning"
     var memo = UITextView()
+    var eachMealPhotoData = "\(getToday(format: "y.M.d")) morning.jpeg"
     let selectImageView = UIImageView()
 
     override func viewDidLoad() {
@@ -164,7 +166,7 @@ class todayMorningSaveMemoViewController: UIViewController {
         getMemoDataFromFirebase(eachMeal: self.eachMeal,memo: self.memo)
 
         //データ取得（保存している画像があれば読み込み、表示する）
-    getPhotoDataFromFireStorage(photo: selectImageView)
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
 
 
         //"メモを保存する"ボタン
@@ -181,7 +183,7 @@ class todayMorningSaveMemoViewController: UIViewController {
 
         saveMemoButton.backgroundColor = UIColor.gray
 
-        saveMemoButton.addTarget(self, action: #selector(saveMemoToFirestore(_:)), for: .touchUpInside)
+        saveMemoButton.addTarget(self, action: #selector(saveMorningMemoDataToFirestore(_:)), for: .touchUpInside)
 
         self.view.addSubview(saveMemoButton)
 
@@ -217,7 +219,7 @@ class todayMorningSaveMemoViewController: UIViewController {
         keyboardClose.items = [spacer,closeButton]
 
         memo.inputAccessoryView = keyboardClose
-        
+
     }
     //キーボードを閉じるアクション
     @objc func closeButtonTapped() {
@@ -225,33 +227,33 @@ class todayMorningSaveMemoViewController: UIViewController {
     }
     
     //FireStoreへ　メモを保存
-    @objc func saveMemoToFirestore(_ sender: UIButton) {
+    @objc func saveMorningMemoDataToFirestore(_ sender: Any) {
 
 
-    guard let userID = Auth.auth().currentUser?.uid else {return}
+guard let userID = Auth.auth().currentUser?.uid else {return}
         guard let memoData = memo.text else {return}
 
-        db.collection("users").document(userID).setData(["\(getToday()) morning" : memoData], merge: true) { err in
-        if let err = err {
-            print("エラーが起きました\(err)")
-        } else {
-            print("ドキュメントが保存されました")
+        db.collection("users").document(userID).setData(["\(getToday()) \(eachMeal)" : memoData], merge: true) { err in
+    if let err = err {
+        print("エラーが起きました\(err)")
+    } else {
+        print("ドキュメントが保存されました")
 
-            //保存時にアラート表示
-            let saveAlert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
-            saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(saveAlert, animated: true, completion: nil)
+        //保存時にアラート表示
+        let saveAlert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
+        saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(saveAlert, animated: true, completion: nil)
 
-        }
     }
 }
-        
+}
 }
 
 class todayMorningSavePhotoViewController: UIViewController {
 
     let selectImageView = UIImageView()
     let imagePicker = UIImagePickerController()
+    var eachMealPhotoData = "\(getToday(format: "y.M.d")) morning.jpeg"
 
 
 
@@ -310,7 +312,7 @@ class todayMorningSavePhotoViewController: UIViewController {
         imagePicker.delegate = self
 
         //データ取得（保存している画像があれば読み込み、表示する）
-    getPhotoDataFromFireStorage(photo: selectImageView)
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
 
     }
 

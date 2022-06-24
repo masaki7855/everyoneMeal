@@ -14,6 +14,7 @@
 		B4356C5B27073C59004D7BB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4356C5A27073C59004D7BB1 /* GoogleService-Info.plist */; };
 		B45697902728640000F07C4C /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B456978F2728640000F07C4C /* settingViewController.swift */; };
 		B45F29252725C2AC00DDD078 /* signinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F29242725C2AC00DDD078 /* signinViewController.swift */; };
+		B46B07F0281996ED0055FBD9 /* saveMemoDataToFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B07EF281996ED0055FBD9 /* saveMemoDataToFirestore.swift */; };
 		B46BBB5C271484E200ECD1E7 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BBB5B271484E200ECD1E7 /* signupViewController.swift */; };
 		B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46CBAFC2732156E00251931 /* activityIndicator.swift */; };
 		B4D82C9C277C7A9100741270 /* getPhotoDataFromFirestorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */; };
@@ -37,6 +38,7 @@
 		B4356C5A27073C59004D7BB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B456978F2728640000F07C4C /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
 		B45F29242725C2AC00DDD078 /* signinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signinViewController.swift; sourceTree = "<group>"; };
+		B46B07EF281996ED0055FBD9 /* saveMemoDataToFirestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveMemoDataToFirestore.swift; sourceTree = "<group>"; };
 		B46BBB5B271484E200ECD1E7 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		B46CBAFC2732156E00251931 /* activityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = activityIndicator.swift; sourceTree = "<group>"; };
 		B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPhotoDataFromFirestorage.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				B419F394275A0F79005474A1 /* getMemoDataFromFirebase.swift */,
 				B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */,
 				B4D82C9D27870B5700741270 /* takePictures.swift */,
+				B46B07EF281996ED0055FBD9 /* saveMemoDataToFirestore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				B4D82C9C277C7A9100741270 /* getPhotoDataFromFirestorage.swift in Sources */,
 				B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */,
 				B4D82C9E27870B5700741270 /* takePictures.swift in Sources */,
+				B46B07F0281996ED0055FBD9 /* saveMemoDataToFirestore.swift in Sources */,
 				B419F395275A0F79005474A1 /* getMemoDataFromFirebase.swift in Sources */,
 				B4F5CEC526EA325E00EA4B27 /* SceneDelegate.swift in Sources */,
 				B45697902728640000F07C4C /* settingViewController.swift in Sources */,
