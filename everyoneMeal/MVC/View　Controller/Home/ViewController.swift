@@ -146,6 +146,15 @@ class selectSaveMenuViewcontroller: cameraViewcontroller {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //朝食　Label
+        let morningTitle = UILabel()
+        morningTitle.text = "朝食"
+        morningTitle.font = UIFont(name: "Optima-Bold", size: 25)
+        morningTitle.frame = CGRect(x: 200, y: 200, width: 200, height: 50)
+        morningTitle.textAlignment = NSTextAlignment.center
+        morningTitle.center.x = self.view.center.x
+        self.view.addSubview(morningTitle)
+
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         //選択した日付を表示する
 
