@@ -10,11 +10,7 @@ import FSCalendar
 import Firebase
 
 
-
-
-class modelOfsaveMemoDataToFirestore: todayMorningSaveMemoViewController {
-
-
 //FireStoreへ　朝食のメモを保存
+//    使用不可能
   
-}
+
