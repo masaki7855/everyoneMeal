@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		577904DAB946558E2FE4018E /* Pods_everyoneMeal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FB4C7E0762197674550729 /* Pods_everyoneMeal.framework */; };
 		B4016ADE2721A11000D2DE2A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4016ADD2721A11000D2DE2A /* Date.swift */; };
-		B40CA59A273EDB7600B5134A /* selectEachMeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA599273EDB7600B5134A /* selectEachMeal.swift */; };
+		B40CA59A273EDB7600B5134A /* makeMealButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA599273EDB7600B5134A /* makeMealButton.swift */; };
 		B419F395275A0F79005474A1 /* getMemoDataFromFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419F394275A0F79005474A1 /* getMemoDataFromFirebase.swift */; };
 		B4356C5B27073C59004D7BB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4356C5A27073C59004D7BB1 /* GoogleService-Info.plist */; };
 		B45697902728640000F07C4C /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B456978F2728640000F07C4C /* settingViewController.swift */; };
 		B45F29252725C2AC00DDD078 /* signinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F29242725C2AC00DDD078 /* signinViewController.swift */; };
-		B46B07F0281996ED0055FBD9 /* saveMemoDataToFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B07EF281996ED0055FBD9 /* saveMemoDataToFirestore.swift */; };
+		B46B07F0281996ED0055FBD9 /* selectSaveoptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B07EF281996ED0055FBD9 /* selectSaveoptions.swift */; };
 		B46BBB5C271484E200ECD1E7 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BBB5B271484E200ECD1E7 /* signupViewController.swift */; };
 		B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46CBAFC2732156E00251931 /* activityIndicator.swift */; };
 		B4D82C9C277C7A9100741270 /* getPhotoDataFromFirestorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */; };
@@ -33,12 +33,12 @@
 		2CDF96C6689EBE4BFDEF2225 /* Pods-everyoneMeal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyoneMeal.debug.xcconfig"; path = "Target Support Files/Pods-everyoneMeal/Pods-everyoneMeal.debug.xcconfig"; sourceTree = "<group>"; };
 		36FABE7D9572E95F85258B82 /* Pods-everyoneMeal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyoneMeal.release.xcconfig"; path = "Target Support Files/Pods-everyoneMeal/Pods-everyoneMeal.release.xcconfig"; sourceTree = "<group>"; };
 		B4016ADD2721A11000D2DE2A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		B40CA599273EDB7600B5134A /* selectEachMeal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectEachMeal.swift; sourceTree = "<group>"; };
+		B40CA599273EDB7600B5134A /* makeMealButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = makeMealButton.swift; sourceTree = "<group>"; };
 		B419F394275A0F79005474A1 /* getMemoDataFromFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMemoDataFromFirebase.swift; sourceTree = "<group>"; };
 		B4356C5A27073C59004D7BB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B456978F2728640000F07C4C /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
 		B45F29242725C2AC00DDD078 /* signinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signinViewController.swift; sourceTree = "<group>"; };
-		B46B07EF281996ED0055FBD9 /* saveMemoDataToFirestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveMemoDataToFirestore.swift; sourceTree = "<group>"; };
+		B46B07EF281996ED0055FBD9 /* selectSaveoptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectSaveoptions.swift; sourceTree = "<group>"; };
 		B46BBB5B271484E200ECD1E7 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		B46CBAFC2732156E00251931 /* activityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = activityIndicator.swift; sourceTree = "<group>"; };
 		B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPhotoDataFromFirestorage.swift; sourceTree = "<group>"; };
@@ -101,11 +101,11 @@
 			children = (
 				B4016ADD2721A11000D2DE2A /* Date.swift */,
 				B46CBAFC2732156E00251931 /* activityIndicator.swift */,
-				B40CA599273EDB7600B5134A /* selectEachMeal.swift */,
+				B40CA599273EDB7600B5134A /* makeMealButton.swift */,
 				B419F394275A0F79005474A1 /* getMemoDataFromFirebase.swift */,
 				B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */,
 				B4D82C9D27870B5700741270 /* takePictures.swift */,
-				B46B07EF281996ED0055FBD9 /* saveMemoDataToFirestore.swift */,
+				B46B07EF281996ED0055FBD9 /* selectSaveoptions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -313,12 +313,12 @@
 				B4016ADE2721A11000D2DE2A /* Date.swift in Sources */,
 				B4EF500027ABCE3200D9AEC5 /* CheckViewController.swift in Sources */,
 				B4F5CEC326EA325E00EA4B27 /* AppDelegate.swift in Sources */,
-				B40CA59A273EDB7600B5134A /* selectEachMeal.swift in Sources */,
+				B40CA59A273EDB7600B5134A /* makeMealButton.swift in Sources */,
 				B46BBB5C271484E200ECD1E7 /* signupViewController.swift in Sources */,
 				B4D82C9C277C7A9100741270 /* getPhotoDataFromFirestorage.swift in Sources */,
 				B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */,
 				B4D82C9E27870B5700741270 /* takePictures.swift in Sources */,
-				B46B07F0281996ED0055FBD9 /* saveMemoDataToFirestore.swift in Sources */,
+				B46B07F0281996ED0055FBD9 /* selectSaveoptions.swift in Sources */,
 				B419F395275A0F79005474A1 /* getMemoDataFromFirebase.swift in Sources */,
 				B4F5CEC526EA325E00EA4B27 /* SceneDelegate.swift in Sources */,
 				B45697902728640000F07C4C /* settingViewController.swift in Sources */,
