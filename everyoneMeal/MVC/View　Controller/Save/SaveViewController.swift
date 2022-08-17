@@ -58,7 +58,8 @@ class selectTodaySaveViewController: cameraViewcontroller {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        selectSaveoptions.makeOptions(mainVC: <#T##UIViewController#>, mainSelectSaveTextButton: <#T##Selector#>, mainSelectSavePhotoButton: <#T##Selector#>)
+        //Model からUIのコードを参照
+        selectSaveoptions.makeOptions(mainVC: self, mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
     }
 
     //"メモを記入する"ボタンのアクション内容　: 画面遷移
