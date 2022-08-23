@@ -326,17 +326,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="Hwy-Ss-rJV"/>
                     <connections>
-                        <segue destination="FP6-CY-oIc" kind="show" identifier="toSelectTodaySave" id="X2Y-Wy-vS5"/>
+                        <segue destination="FP6-CY-oIc" kind="show" identifier="toSelectTodayMorningSave" id="X2Y-Wy-vS5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qd-a7-l8W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1687" y="220"/>
         </scene>
-        <!--Select Today Save View Controller-->
+        <!--Select Today Morning Save View Controller-->
         <scene sceneID="8l9-Yf-0Nn">
             <objects>
-                <viewController id="FP6-CY-oIc" customClass="selectTodaySaveViewController" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FP6-CY-oIc" customClass="selectTodayMorningSaveViewController" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vtQ-hC-6Z5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

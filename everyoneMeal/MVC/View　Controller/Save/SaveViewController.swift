@@ -30,7 +30,7 @@ class SaveViewController: UIViewController {
         let TodayLabel = UILabel()
         getTodayLabel(uiLabel: TodayLabel, uiViewController: self)
         //"朝食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("todaySaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("todayMorningSaveButton:"))
 
         //"昼食を記入する"ボタン
         makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("todaySaveButton:"))
@@ -48,12 +48,12 @@ class SaveViewController: UIViewController {
 
     }
     //"各食を記入する"　ボタンのアクション内容 :画面遷移
-    @objc func todaySaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectTodaySave", sender: self)
+    @objc func todayMorningSaveButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSelectTodayMorningSave", sender: self)
     }
 }
 
-class selectTodaySaveViewController: cameraViewcontroller {
+class selectTodayMorningSaveViewController: cameraViewcontroller {
 
     override func viewDidLoad() {
         super.viewDidLoad()

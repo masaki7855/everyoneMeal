@@ -87,7 +87,7 @@ class selectSaveoptionsClass: cameraViewcontroller {
 }
 let selectSaveoptions = selectSaveoptionsClass()
 
-/*
+/*  
 //今日の日付を表示する
 let SaveLabel = UILabel()
 getTodayLabel(uiLabel: SaveLabel, uiViewController: self)
