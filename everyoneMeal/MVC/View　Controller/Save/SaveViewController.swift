@@ -33,10 +33,10 @@ class SaveViewController: UIViewController {
         makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("todayMorningSaveButton:"))
 
         //"昼食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("todaySaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("todayLunchSaveButton:"))
 
         //"夕食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("todaySaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("todayDinnerSaveButton:"))
 
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -47,9 +47,17 @@ class SaveViewController: UIViewController {
         )
 
     }
-    //"各食を記入する"　ボタンのアクション内容 :画面遷移
+    //"朝食を記入する"　ボタンのアクション内容 :画面遷移
     @objc func todayMorningSaveButton(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toSelectTodayMorningSave", sender: self)
+    }
+    //"昼食を記入する"　ボタンのアクション内容 :画面遷移
+    @objc func todayLunchSaveButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSelectTodayLunchSave", sender: self)
+    }
+    //"夕食を記入する"　ボタンのアクション内容 :画面遷移
+    @objc func todayDinnerSaveButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSelectTodayDinnerSave", sender: self)
     }
 }
 
