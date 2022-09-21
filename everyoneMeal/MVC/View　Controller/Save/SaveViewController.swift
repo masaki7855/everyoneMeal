@@ -61,6 +61,7 @@ class SaveViewController: UIViewController {
     }
 }
 
+
 //下記 朝食を記録するコード
 class selectTodayMorningSaveViewController: cameraViewcontroller {
 
@@ -321,3 +322,23 @@ extension todayMorningSavePhotoViewController: UIImagePickerControllerDelegate, 
     }
 }
 //以上　朝食を記入するコード
+
+class selectTodayLunchSaveViewController: cameraViewcontroller {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        //Model からUIのコードを参照
+        selectSaveoptions.makeOptions(mainVC: self, mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
+    }
+
+    //"メモを記入する"ボタンのアクション内容　: 画面遷移
+    @objc func selectSaveTextButton(_ sender: UIButton){
+        self.performSegue(withIdentifier: "toTodayLunchSaveMemo", sender: self)
+    }
+
+    //"写真を選択する"ボタンのアクション内容　: 画面遷移
+    @objc func selectSavePhotoButton(_ sender: UIButton){
+        self.performSegue(withIdentifier: "toTodayLunchSavePhoto", sender: self)
+    }
+}

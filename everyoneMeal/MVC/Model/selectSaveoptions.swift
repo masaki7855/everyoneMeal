@@ -13,7 +13,7 @@ import Firebase
 //FireStoreへ　朝食のメモを保存
 //    使用不可能
 
-//食事選択後のオプション（写真を撮影する,写真を選択する、メモを記入する）
+//食事選択後のオプション（写真を撮影する,写真を選択する、メモを記入する）ボタン
 
 class selectSaveoptionsClass: cameraViewcontroller {
     func makeOptions (mainVC:UIViewController,mainSelectSaveTextButton: Selector,mainSelectSavePhotoButton: Selector){
