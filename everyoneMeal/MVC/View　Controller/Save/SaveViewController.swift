@@ -323,6 +323,8 @@ extension todayMorningSavePhotoViewController: UIImagePickerControllerDelegate, 
 }
 //以上　朝食を記入するコード
 
+//下記　昼食を記入するコード
+
 class selectTodayLunchSaveViewController: cameraViewcontroller {
 
     override func viewDidLoad() {
@@ -341,4 +343,117 @@ class selectTodayLunchSaveViewController: cameraViewcontroller {
     @objc func selectSavePhotoButton(_ sender: UIButton){
         self.performSegue(withIdentifier: "toTodayLunchSavePhoto", sender: self)
     }
+}
+
+class todayLunchSaveMemoViewController: UIViewController {
+
+
+    var eachMeal = "\(getToday()) Lunch"
+    var memo = UITextView()
+    var eachMealPhotoData = "\(getToday(format: "y.M.d")) Lunch.jpeg"
+    let selectImageView = UIImageView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+
+
+        //選択した写真を表示するView
+        selectImageView.frame = CGRect(x: 0, y: 120, width: 275, height: 275)
+        selectImageView.center.x = self.view.center.x
+
+        selectImageView.layer.borderWidth = 2
+
+        selectImageView.layer.borderColor = UIColor.gray.cgColor
+
+        selectImageView.layer.cornerRadius = 5
+
+        self.view.addSubview(selectImageView)
+
+        //firestroreからメモのデータを取得する
+
+        getMemoDataFromFirebase(eachMeal: self.eachMeal,memo: self.memo)
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
+
+
+        //"メモを保存する"ボタン
+        let saveMemoButton = UIButton()
+
+        saveMemoButton.setTitle("メモを保存する", for: UIControl.State.normal)
+
+        saveMemoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+
+        saveMemoButton.frame = CGRect(x: 200, y: 700, width: 200, height: 50)
+        saveMemoButton.center.x = self.view.center.x
+
+        saveMemoButton.setTitleColor(UIColor.white, for: .normal)
+
+        saveMemoButton.backgroundColor = UIColor.gray
+
+        saveMemoButton.addTarget(self, action: #selector(saveLunchMemoDataToFirestore(_:)), for: .touchUpInside)
+
+        self.view.addSubview(saveMemoButton)
+
+
+
+        //メモ記入欄
+
+         memo.frame = CGRect(x: 0, y: 420, width: 325, height: 250)
+
+         memo.center.x = self.view.center.x
+
+         memo.layer.borderWidth = 2
+
+         memo.layer.borderColor = UIColor.gray.cgColor
+
+         memo.layer.cornerRadius = 10
+
+         self.view.addSubview(memo)
+
+        //メモの記入時のキーボードを閉じるボタン
+
+
+        let keyboardClose = UIToolbar(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+
+        keyboardClose.barStyle = UIBarStyle.default
+
+        keyboardClose.sizeToFit()
+
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.closeButtonTapped))
+
+        keyboardClose.items = [spacer,closeButton]
+
+        memo.inputAccessoryView = keyboardClose
+
+    }
+    //キーボードを閉じるアクション
+    @objc func closeButtonTapped() {
+        self.view.endEditing(true)
+    }
+
+    //FireStoreへ　メモを保存
+    @objc func saveLunchMemoDataToFirestore(_ sender: Any) {
+
+
+guard let userID = Auth.auth().currentUser?.uid else {return}
+        guard let memoData = memo.text else {return}
+
+        db.collection("users").document(userID).setData(["\(getToday()) \(eachMeal)" : memoData], merge: true) { err in
+    if let err = err {
+        print("エラーが起きました\(err)")
+    } else {
+        print("ドキュメントが保存されました")
+
+        //保存時にアラート表示
+        let saveAlert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
+        saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(saveAlert, animated: true, completion: nil)
+
+    }
+}
+}
 }
