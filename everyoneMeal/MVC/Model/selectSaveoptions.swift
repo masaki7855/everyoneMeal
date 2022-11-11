@@ -16,10 +16,19 @@ import Firebase
 //食事選択後のオプション（写真を撮影する,写真を選択する、メモを記入する）ボタン
 
 class selectSaveoptionsClass: cameraViewcontroller {
-    func makeOptions (mainVC:UIViewController,mainSelectSaveTextButton: Selector,mainSelectSavePhotoButton: Selector){
+    func makeOptions (mainVC:UIViewController,meal:String,mainSelectSaveTextButton: Selector,mainSelectSavePhotoButton: Selector){
         //今日の日付を表示する
         let SaveLabel = UILabel()
         getTodayLabel(uiLabel: SaveLabel, uiViewController: mainVC)
+
+        //各食事のラベル
+        let eachMealLabel = UILabel()
+        eachMealLabel.text = meal
+        eachMealLabel.font = UIFont(name: "Optima-Bold", size: 25)
+        eachMealLabel.frame = CGRect(x: 200, y: 65, width: 200, height: 50)
+        eachMealLabel.textAlignment = NSTextAlignment.center
+        eachMealLabel.center.x = mainVC.view.center.x
+        mainVC.view.addSubview(eachMealLabel)
 
         //　"写真を撮影する"ボタン
         let takePicturesAndSave = UIButton()
