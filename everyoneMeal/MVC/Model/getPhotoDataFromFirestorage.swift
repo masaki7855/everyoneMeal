@@ -2,7 +2,7 @@
 //  getPhotoDataFromFirestorage.swift
 //  everyoneMeal
 //
-//  Created by 細渕雅貴 on 2021/12/29. test
+//  Created by 細渕雅貴 on 2021/12/29. 
 //
 
 import UIKit
