@@ -109,13 +109,13 @@ class selectEachMealViewcontroller: HomeViewcontroller {
         selectDayLabel(uiLabel: selectDay, uiViewController: self)
         
         //"朝食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("selectDaySaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("theMorningSaveButton:"))
 
         //"昼食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("selectDaySaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("theLunchSaveButton:"))
 
         //"夕食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("selectDaySaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("theDinnerSaveButton:"))
         
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -126,9 +126,19 @@ class selectEachMealViewcontroller: HomeViewcontroller {
         )
     }
     
-    // "各食を記入する"　ボタンのアクション内容 :画面遷移
-    @objc func selectDaySaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectSaveMenu", sender: self)
+    // "朝食を記入する"　ボタンのアクション内容 :画面遷移
+    @objc func theMorningSaveButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSelectTheMorningSave", sender: self)
+    }
+
+    // "昼食を記入する"　ボタンのアクション内容 :画面遷移
+    @objc func theLunchSaveButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSelectTheLunchSave", sender: self)
+    }
+
+    // "夕食を記入する"　ボタンのアクション内容 :画面遷移
+    @objc func theDinnerSaveButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSelectTheDinnerSave", sender: self)
     }
     
     //”戻る”　ボタンのアクション内容
@@ -138,7 +148,7 @@ class selectEachMealViewcontroller: HomeViewcontroller {
     
 }
 
-class selectSaveMenuViewcontroller: cameraViewcontroller {
+class selectTheMorningSaveViewcontroller: cameraViewcontroller {
     
     var leftButtonClose: UIBarButtonItem!
     

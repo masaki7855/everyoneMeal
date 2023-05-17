@@ -68,7 +68,7 @@ class selectTodayMorningSaveViewController: cameraViewcontroller {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //Model からUIのコードを参照
+        //Model から"selectSaveoptions.swift"のコードを参照
         selectSaveoptions.makeOptions(mainVC: self,meal: "朝食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
     }
 
