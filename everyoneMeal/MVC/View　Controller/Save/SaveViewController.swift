@@ -69,7 +69,7 @@ class selectTodayMorningSaveViewController: cameraViewcontroller {
         super.viewDidLoad()
 
         //Model から"selectSaveoptions.swift"のコードを参照
-        selectSaveoptions.makeOptions(mainVC: self,meal: "朝食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
+        todaySelectSaveoptions.makeOptions(mainVC: self,meal: "朝食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
     }
 
     //"メモを記入する"ボタンのアクション内容　: 画面遷移
@@ -321,9 +321,9 @@ extension todayMorningSavePhotoViewController: UIImagePickerControllerDelegate, 
         dismiss(animated: true, completion: nil)
     }
 }
-//以上　朝食を記入するコード
+//以上　朝食を記録するコード
 
-//下記　昼食を記入するコード
+//下記　昼食を記録するコード
 
 class selectTodayLunchSaveViewController: cameraViewcontroller {
 
@@ -331,7 +331,7 @@ class selectTodayLunchSaveViewController: cameraViewcontroller {
         super.viewDidLoad()
 
         //Modelから各ボタンのUIコードを参照
-        selectSaveoptions.makeOptions(mainVC: self,meal: "昼食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
+        todaySelectSaveoptions.makeOptions(mainVC: self,meal: "昼食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
     }
 
     //"メモを記入する"ボタンのアクション内容　: 画面遷移
@@ -583,9 +583,9 @@ extension todayLunchSavePhotoViewController: UIImagePickerControllerDelegate, UI
         dismiss(animated: true, completion: nil)
     }
 }
-//以上　昼食を記入するコード
+//以上　昼食を記録するコード
 
-//下記　夕食を記入するコード
+//下記　夕食を記録するコード
 
 class selectTodayDinnerSaveViewController: cameraViewcontroller {
 
@@ -593,7 +593,7 @@ class selectTodayDinnerSaveViewController: cameraViewcontroller {
         super.viewDidLoad()
 
         //Modelから各ボタンのUIコードを参照
-        selectSaveoptions.makeOptions(mainVC: self,meal: "夕食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
+        todaySelectSaveoptions.makeOptions(mainVC: self,meal: "夕食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
     }
 
     //"メモを記入する"ボタンのアクション内容　: 画面遷移
@@ -845,3 +845,4 @@ extension todayDinnerSavePhotoViewController: UIImagePickerControllerDelegate, U
         dismiss(animated: true, completion: nil)
     }
 }
+//以上　夕食を記録するコード

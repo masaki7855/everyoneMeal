@@ -274,7 +274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4D9-Xs-DPv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688" y="-1398"/>
+            <point key="canvasLocation" x="1733" y="-3078"/>
         </scene>
         <!--Select Each Meal Viewcontroller-->
         <scene sceneID="MFF-gc-VBN">
@@ -293,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogE-h7-37Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2790" y="-1398"/>
+            <point key="canvasLocation" x="2758" y="-3078"/>
         </scene>
         <!--Select The Morning Save Viewcontroller-->
         <scene sceneID="myu-N2-GXl">
@@ -307,12 +307,29 @@
                     </view>
                     <navigationItem key="navigationItem" id="j85-WE-ve0"/>
                     <connections>
-                        <segue destination="0Gu-sQ-bNR" kind="show" identifier="toSaveMorning" id="udf-be-MDf"/>
+                        <segue destination="0Gu-sQ-bNR" kind="show" identifier="toThedayMorningSaveMemo" id="udf-be-MDf"/>
+                        <segue destination="fha-io-lk2" kind="show" identifier="toThedayMorningSavePhoto" id="pQS-1a-Gda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ip-oe-sgb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3925" y="-2008"/>
+            <point key="canvasLocation" x="3810" y="-4388"/>
+        </scene>
+        <!--Theday Morning Save Photo View Controller-->
+        <scene sceneID="epo-OL-mqa">
+            <objects>
+                <viewController id="fha-io-lk2" customClass="thedayMorningSavePhotoViewController" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uWH-7B-pCd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wzf-Ma-vP4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ibe-5A-2xg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cET-Gi-nB5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4931" y="-4115"/>
         </scene>
         <!--Save View Controller-->
         <scene sceneID="3Aj-Ta-JQx">
@@ -513,10 +530,10 @@
             </objects>
             <point key="canvasLocation" x="741" y="220"/>
         </scene>
-        <!--Save Morning Viewcontroller-->
+        <!--Theday Morning Save Memo Viewcontroller-->
         <scene sceneID="56n-qT-hNi">
             <objects>
-                <viewController id="0Gu-sQ-bNR" customClass="saveMorningViewcontroller" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0Gu-sQ-bNR" customClass="thedayMorningSaveMemoViewcontroller" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3RS-U1-QTI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -527,7 +544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yn4-Nu-aSd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4981" y="-2008"/>
+            <point key="canvasLocation" x="4954" y="-4915"/>
         </scene>
         <!--ホーム-->
         <scene sceneID="rMf-PG-w2z">
@@ -546,7 +563,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhA-aZ-A4c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741" y="-1398"/>
+            <point key="canvasLocation" x="683" y="-3078"/>
         </scene>
         <!--Today Morning Save Memo View Controller-->
         <scene sceneID="o2B-Yp-2hq">
