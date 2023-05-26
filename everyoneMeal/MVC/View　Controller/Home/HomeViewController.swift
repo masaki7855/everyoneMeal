@@ -69,7 +69,7 @@ class HomeViewcontroller:UIViewController,FSCalendarDelegate,FSCalendarDelegateA
         let month = selectDate.component(.month, from: date)
         let day = selectDate.component(.day, from: date)
         //カレンダーで選択した日付の情報
-        appDelegate.calendarDate = "\(year)/\(month)/\(day)"
+        appDelegate.calendarDate = "\(year).\(month).\(day)"
 
 
         let alert = UIAlertController(title: "選択した日付の記録、\nまたは確認をしますか？", message: "", preferredStyle: .alert)
