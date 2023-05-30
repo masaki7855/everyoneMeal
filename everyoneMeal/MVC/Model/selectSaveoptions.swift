@@ -66,10 +66,10 @@ class todaySelectSaveoptionsClass: cameraViewcontroller {
 
         mainVC.view.addSubview(writeInButton)
 
-        //　"写真を選択する"ボタン
+        //　"画像を選択する"ボタン
         let selectSavePhoto = UIButton()
 
-        selectSavePhoto.setTitle("写真を選択する", for: UIControl.State.normal)
+        selectSavePhoto.setTitle("画像を選択する", for: UIControl.State.normal)
 
         selectSavePhoto.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
@@ -148,10 +148,10 @@ class thedaySelectSaveoptionsClass: cameraViewcontroller {
 
         mainVC.view.addSubview(writeInButton)
 
-        //　"写真を選択する"ボタン
+        //　"画像を選択する"ボタン
         let selectSavePhoto = UIButton()
 
-        selectSavePhoto.setTitle("写真を選択する", for: UIControl.State.normal)
+        selectSavePhoto.setTitle("画像を選択する", for: UIControl.State.normal)
 
         selectSavePhoto.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 

@@ -77,7 +77,7 @@ class selectTodayMorningSaveViewController: cameraViewcontroller {
         self.performSegue(withIdentifier: "toTodayMorningSaveMemo", sender: self)
     }
 
-    //"写真を選択する"ボタンのアクション内容　: 画面遷移
+    //"画像を選択する"ボタンのアクション内容　: 画面遷移
     @objc func selectSavePhotoButton(_ sender: UIButton){
         self.performSegue(withIdentifier: "toTodayMorningSavePhoto", sender: self)
     }
@@ -96,7 +96,7 @@ class todayMorningSaveMemoViewController: UIViewController {
 
        
 
-        //選択した写真を表示するView
+        //選択した画像を表示するView
         selectImageView.frame = CGRect(x: 0, y: 120, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -201,13 +201,13 @@ class todayMorningSavePhotoViewController: UIViewController {
     let selectImageView = UIImageView()
     let imagePicker = UIImagePickerController()
     var eachMealPhotoData = "\(getToday(format: "y.M.d")) morning.jpeg"
-
+    var selectPictures = UIImageView()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //選択した写真を表示するView
+        //選択した画像を表示するView
         selectImageView.frame = CGRect(x: 0, y: 175, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -219,10 +219,10 @@ class todayMorningSavePhotoViewController: UIViewController {
 
         self.view.addSubview(selectImageView)
 
-        //"写真を選択する"ボタン
+        //"画像を選択する"ボタン
         let selectPhotoButton = UIButton()
 
-        selectPhotoButton.setTitle("写真を選択する", for: UIControl.State.normal)
+        selectPhotoButton.setTitle("画像を選択する", for: UIControl.State.normal)
 
         selectPhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
@@ -263,8 +263,8 @@ class todayMorningSavePhotoViewController: UIViewController {
 
     }
 
-    /*"写真を選択する"ボタンのアクション内容
-    （ライブラリーに移動し写真を選択する）*/
+    /*"画像を選択する"ボタンのアクション内容
+    （ライブラリーに移動し画像を選択する）*/
     @objc func toImagePicker(_ sender: Any) {
         imagePicker.allowsEditing = true
 
@@ -273,7 +273,7 @@ class todayMorningSavePhotoViewController: UIViewController {
         present(imagePicker, animated: true, completion:
         nil)
     }
-    //firestorageに写真を保存する
+    //firestorageに画像を保存する
     @objc func savePhoto () {
 
         guard let userID = Auth.auth().currentUser?.uid else {return}
@@ -288,7 +288,9 @@ class todayMorningSavePhotoViewController: UIViewController {
 
         var uploadData  = Data()
 
-        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9))!
+        selectPictures.image = UIImage(named: "selectPictures")!
+
+        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9)) ?? selectPictures.image!.jpegData(compressionQuality: 1)!
 
         storageRef.putData(uploadData, metadata: metaData) {
             metaData, Error in
@@ -463,7 +465,7 @@ class todayLunchSavePhotoViewController: UIViewController {
     let selectImageView = UIImageView()
     let imagePicker = UIImagePickerController()
     var eachMealPhotoData = "\(getToday(format: "y.M.d")) lunch.jpeg"
-
+    var selectPictures = UIImageView()
 
 
     override func viewDidLoad() {
@@ -550,7 +552,9 @@ class todayLunchSavePhotoViewController: UIViewController {
 
         var uploadData  = Data()
 
-        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9))!
+        selectPictures.image = UIImage(named: "selectPictures")!
+
+        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9)) ?? selectPictures.image!.jpegData(compressionQuality: 1)!
 
         storageRef.putData(uploadData, metadata: metaData) {
             metaData, Error in
@@ -725,7 +729,7 @@ class todayDinnerSavePhotoViewController: UIViewController {
     let selectImageView = UIImageView()
     let imagePicker = UIImagePickerController()
     var eachMealPhotoData = "\(getToday(format: "y.M.d")) dinner.jpeg"
-
+    var selectPictures = UIImageView()
 
 
     override func viewDidLoad() {
@@ -812,7 +816,9 @@ class todayDinnerSavePhotoViewController: UIViewController {
 
         var uploadData  = Data()
 
-        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9))!
+        selectPictures.image = UIImage(named: "selectPictures")!
+
+        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9)) ?? selectPictures.image!.jpegData(compressionQuality: 1)!
 
         storageRef.putData(uploadData, metadata: metaData) {
             metaData, Error in

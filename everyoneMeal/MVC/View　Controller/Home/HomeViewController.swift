@@ -100,10 +100,13 @@ class selectEachMealViewcontroller: HomeViewcontroller {
 
     var leftButtonBack: UIBarButtonItem!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
         //選択した日付を表示する
         let selectDay = UILabel()
         selectDayLabel(uiLabel: selectDay, uiViewController: self)
@@ -296,7 +299,7 @@ class thedayMorningSavePhotoViewController: HomeViewcontroller {
 
     let selectImageView = UIImageView()
     let imagePicker = UIImagePickerController()
-    var eachMealPhotoData = "\(appDelegate.calendarDate) morning.jpeg"
+    var eachMealPhotoData = "\(appDelegate.calendarDate!) morning.jpeg"
 
 
 

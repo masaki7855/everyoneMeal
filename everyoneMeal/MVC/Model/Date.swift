@@ -19,6 +19,7 @@ func getToday(format:String = "y/M/d") -> String {
 
 //選択した日付を表示する
 func selectDayLabel(uiLabel: UILabel,uiViewController: UIViewController) {
+
     uiLabel.text = "\(appDelegate.calendarDate!)"
     uiLabel.font = UIFont(name: "Optima-Bold", size: 25)
     uiLabel.frame = CGRect(x: 200, y: 100, width: 250, height: 100)
