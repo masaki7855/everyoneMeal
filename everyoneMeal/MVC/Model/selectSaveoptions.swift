@@ -10,10 +10,7 @@ import FSCalendar
 import Firebase
 
 
-//FireStoreへ　朝食のメモを保存
-//    使用不可能
-
-//今日の食事選択後のオプション（写真を撮影する,写真を選択する、メモを記入する）ボタン
+//今日の食事選択後のオプション（写真を撮影する,画像を選択する、メモを記入する）ボタン
 
 class todaySelectSaveoptionsClass: cameraViewcontroller {
     func makeOptions (mainVC:UIViewController,meal:String,mainSelectSaveTextButton: Selector,mainSelectSavePhotoButton: Selector){
@@ -96,7 +93,7 @@ class todaySelectSaveoptionsClass: cameraViewcontroller {
 }
 let todaySelectSaveoptions = todaySelectSaveoptionsClass()
 
-//選択した日付の食事選択後のオプション（写真を撮影する,写真を選択する、メモを記入する）ボタン
+//選択した日付の食事選択後のオプション（写真を撮影する,画像を選択する、メモを記入する）ボタン
 
 class thedaySelectSaveoptionsClass: cameraViewcontroller {
     func makeOptions (mainVC:UIViewController,meal:String,mainSelectSaveTextButton: Selector,mainSelectSavePhotoButton: Selector){

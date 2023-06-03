@@ -105,20 +105,19 @@ class selectEachMealViewcontroller: HomeViewcontroller {
         super.viewDidLoad()
 
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
         //選択した日付を表示する
         let selectDay = UILabel()
         selectDayLabel(uiLabel: selectDay, uiViewController: self)
         
         //"朝食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("theMorningSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: #selector(self.theMorningSaveButton(_:)))
 
         //"昼食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("theLunchSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: #selector(self.theLunchSaveButton(_:)))
 
         //"夕食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("theDinnerSaveButton:"))
+        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: #selector(self.theDinnerSaveButton(_:)))
         
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -170,7 +169,7 @@ class selectTheMorningSaveViewcontroller: cameraViewcontroller {
         self.performSegue(withIdentifier: "toThedayMorningSaveMemo", sender: self)
     }
 
-    //"写真を選択する"ボタンのアクション内容　: 画面遷移
+    //"画像を選択する"ボタンのアクション内容　: 画面遷移
     @objc func selectSavePhotoButton(_ sender: UIButton){
         self.performSegue(withIdentifier: "toThedayMorningSavePhoto", sender: self)
     }
@@ -195,7 +194,7 @@ class thedayMorningSaveMemoViewcontroller: UIViewController {
 
 
 
-        //選択した写真を表示するView
+        //選択した画像を表示するView
         selectImageView.frame = CGRect(x: 0, y: 120, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -306,7 +305,7 @@ class thedayMorningSavePhotoViewController: HomeViewcontroller {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //選択した写真を表示するView
+        //選択した画像を表示するView
         selectImageView.frame = CGRect(x: 0, y: 175, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -318,42 +317,8 @@ class thedayMorningSavePhotoViewController: HomeViewcontroller {
 
         self.view.addSubview(selectImageView)
 
-        //"写真を選択する"ボタン
-        let selectPhotoButton = UIButton()
-
-        selectPhotoButton.setTitle("写真を選択する", for: UIControl.State.normal)
-
-        selectPhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-
-        selectPhotoButton.frame = CGRect(x: 200, y: 500, width: 275, height: 50)
-        selectPhotoButton.center.x = self.view.center.x
-
-        selectPhotoButton.setTitleColor(UIColor.white, for: .normal)
-
-        selectPhotoButton.backgroundColor = UIColor.gray
-
-        selectPhotoButton.addTarget(self, action: #selector(toImagePicker), for: .touchUpInside)
-
-        self.view.addSubview(selectPhotoButton)
-
-
-        //"表示している画像で記録する"　ボタン
-        let savePhotoButton = UIButton()
-
-        savePhotoButton.setTitle("表示している画像で記録する", for: UIControl.State.normal)
-
-        savePhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-
-        savePhotoButton.frame = CGRect(x: 200, y: 600, width: 275, height: 50)
-        savePhotoButton.center.x = self.view.center.x
-
-        savePhotoButton.setTitleColor(UIColor.white, for: .normal)
-
-        savePhotoButton.backgroundColor = UIColor.gray
-
-        savePhotoButton.addTarget(self, action: #selector(savePhoto), for: .touchUpInside)
-
-        self.view.addSubview(savePhotoButton)
+        //"ライブラリーから画像を選択する""表示している画像で記録する"ボタン
+        savePhotoButton.makeSavePhotoButton(self: self, toImagePicker:#selector(self.toImagePicker(_:)), savePhoto: #selector(self.savePhoto))
 
         imagePicker.delegate = self
 
@@ -362,8 +327,8 @@ class thedayMorningSavePhotoViewController: HomeViewcontroller {
 
     }
 
-    /*"写真を選択する"ボタンのアクション内容
-    （ライブラリーに移動し写真を選択する）*/
+    /*"画像を選択する"ボタンのアクション内容
+    （ライブラリーに移動し画像を選択する）*/
     @objc func toImagePicker(_ sender: Any) {
         imagePicker.allowsEditing = true
 
@@ -372,7 +337,7 @@ class thedayMorningSavePhotoViewController: HomeViewcontroller {
         present(imagePicker, animated: true, completion:
         nil)
     }
-    //firestorageに写真を保存する
+    //firestorageに画像を保存する
     @objc func savePhoto () {
 
 
@@ -399,7 +364,7 @@ class thedayMorningSavePhotoViewController: HomeViewcontroller {
                 print("アップに成功しました。")
 
                 //保存時にアラート表示
-                let saveAlert = UIAlertController(title: "写真を記録しました", message: "", preferredStyle: .alert)
+                let saveAlert = UIAlertController(title: "画像を記録しました", message: "", preferredStyle: .alert)
                 saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(saveAlert, animated: true, completion: nil)
 
@@ -421,7 +386,6 @@ extension thedayMorningSavePhotoViewController: UIImagePickerControllerDelegate,
         dismiss(animated: true, completion: nil)
     }
 }
-//以上　朝食を記録するコード
    
 
 

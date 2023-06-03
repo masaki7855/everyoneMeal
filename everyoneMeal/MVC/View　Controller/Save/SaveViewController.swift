@@ -301,7 +301,7 @@ class todayMorningSavePhotoViewController: UIViewController {
                 print("アップに成功しました。")
 
                 //保存時にアラート表示
-                let saveAlert = UIAlertController(title: "写真を記録しました", message: "", preferredStyle: .alert)
+                let saveAlert = UIAlertController(title: "画像を記録しました", message: "", preferredStyle: .alert)
                 saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(saveAlert, animated: true, completion: nil)
 
@@ -341,7 +341,7 @@ class selectTodayLunchSaveViewController: cameraViewcontroller {
         self.performSegue(withIdentifier: "toTodayLunchSaveMemo", sender: self)
     }
 
-    //"写真を選択する"ボタンのアクション内容　: 画面遷移
+    //"画像を選択する"ボタンのアクション内容　: 画面遷移
     @objc func selectSavePhotoButton(_ sender: UIButton){
         self.performSegue(withIdentifier: "toTodayLunchSavePhoto", sender: self)
     }
@@ -360,7 +360,7 @@ class todayLunchSaveMemoViewController: UIViewController {
 
 
 
-        //選択した写真を表示するView
+        //選択した画像を表示するView
         selectImageView.frame = CGRect(x: 0, y: 120, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -471,7 +471,7 @@ class todayLunchSavePhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //選択した写真を表示するView
+        //選択した画像を表示するView
         selectImageView.frame = CGRect(x: 0, y: 175, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -483,10 +483,10 @@ class todayLunchSavePhotoViewController: UIViewController {
 
         self.view.addSubview(selectImageView)
 
-        //"写真を選択する"ボタン
+        //"画像を選択する"ボタン
         let selectPhotoButton = UIButton()
 
-        selectPhotoButton.setTitle("写真を選択する", for: UIControl.State.normal)
+        selectPhotoButton.setTitle("画像を選択する", for: UIControl.State.normal)
 
         selectPhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
@@ -527,7 +527,7 @@ class todayLunchSavePhotoViewController: UIViewController {
 
     }
 
-    /*"写真を選択する"ボタンのアクション内容
+    /*"画像を選択する"ボタンのアクション内容
     （ライブラリーに移動し写真を選択する）*/
     @objc func toImagePicker(_ sender: Any) {
         imagePicker.allowsEditing = true
@@ -537,7 +537,7 @@ class todayLunchSavePhotoViewController: UIViewController {
         present(imagePicker, animated: true, completion:
         nil)
     }
-    //firestorageに写真を保存する
+    //firestorageに画像を保存する
     @objc func savePhoto () {
 
         guard let userID = Auth.auth().currentUser?.uid else {return}
@@ -605,7 +605,7 @@ class selectTodayDinnerSaveViewController: cameraViewcontroller {
         self.performSegue(withIdentifier: "toTodayDinnerSaveMemo", sender: self)
     }
 
-    //"写真を選択する"ボタンのアクション内容　: 画面遷移
+    //"画像を選択する"ボタンのアクション内容　: 画面遷移
     @objc func selectSavePhotoButton(_ sender: UIButton){
         self.performSegue(withIdentifier: "toTodayDinnerSavePhoto", sender: self)
     }
@@ -624,7 +624,7 @@ class todayDinnerSaveMemoViewController: UIViewController {
 
 
 
-        //選択した写真を表示するView
+        //選択した画像を表示するView
         selectImageView.frame = CGRect(x: 0, y: 120, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -735,7 +735,7 @@ class todayDinnerSavePhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //選択した写真を表示するView
+        //選択した画像を表示するView
         selectImageView.frame = CGRect(x: 0, y: 175, width: 275, height: 275)
         selectImageView.center.x = self.view.center.x
 
@@ -747,10 +747,10 @@ class todayDinnerSavePhotoViewController: UIViewController {
 
         self.view.addSubview(selectImageView)
 
-        //"写真を選択する"ボタン
+        //"画像を選択する"ボタン
         let selectPhotoButton = UIButton()
 
-        selectPhotoButton.setTitle("写真を選択する", for: UIControl.State.normal)
+        selectPhotoButton.setTitle("画像を選択する", for: UIControl.State.normal)
 
         selectPhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
@@ -791,7 +791,7 @@ class todayDinnerSavePhotoViewController: UIViewController {
 
     }
 
-    /*"写真を選択する"ボタンのアクション内容
+    /*"画像を選択する"ボタンのアクション内容
     （ライブラリーに移動し写真を選択する）*/
     @objc func toImagePicker(_ sender: Any) {
         imagePicker.allowsEditing = true
@@ -801,7 +801,7 @@ class todayDinnerSavePhotoViewController: UIViewController {
         present(imagePicker, animated: true, completion:
         nil)
     }
-    //firestorageに写真を保存する
+    //firestorageに画像を保存する
     @objc func savePhoto () {
 
         guard let userID = Auth.auth().currentUser?.uid else {return}
