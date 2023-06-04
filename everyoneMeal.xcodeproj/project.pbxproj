@@ -17,7 +17,8 @@
 		B46B07F0281996ED0055FBD9 /* selectSaveoptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B07EF281996ED0055FBD9 /* selectSaveoptions.swift */; };
 		B46BBB5C271484E200ECD1E7 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BBB5B271484E200ECD1E7 /* signupViewController.swift */; };
 		B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46CBAFC2732156E00251931 /* activityIndicator.swift */; };
-		B4D241CE2A2B245200F28FB8 /* NoNeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D241CD2A2B245200F28FB8 /* NoNeme.swift */; };
+		B4D241CE2A2B245200F28FB8 /* savePhotoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D241CD2A2B245200F28FB8 /* savePhotoButtons.swift */; };
+		B4D241D02A2CC7B400F28FB8 /* saveMemoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D241CF2A2CC7B400F28FB8 /* saveMemoButtons.swift */; };
 		B4D82C9C277C7A9100741270 /* getPhotoDataFromFirestorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */; };
 		B4D82C9E27870B5700741270 /* takePictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D82C9D27870B5700741270 /* takePictures.swift */; };
 		B4EF500027ABCE3200D9AEC5 /* CheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EF4FFF27ABCE3200D9AEC5 /* CheckViewController.swift */; };
@@ -42,7 +43,8 @@
 		B46B07EF281996ED0055FBD9 /* selectSaveoptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectSaveoptions.swift; sourceTree = "<group>"; };
 		B46BBB5B271484E200ECD1E7 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		B46CBAFC2732156E00251931 /* activityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = activityIndicator.swift; sourceTree = "<group>"; };
-		B4D241CD2A2B245200F28FB8 /* NoNeme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNeme.swift; sourceTree = "<group>"; };
+		B4D241CD2A2B245200F28FB8 /* savePhotoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savePhotoButtons.swift; sourceTree = "<group>"; };
+		B4D241CF2A2CC7B400F28FB8 /* saveMemoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveMemoButtons.swift; sourceTree = "<group>"; };
 		B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPhotoDataFromFirestorage.swift; sourceTree = "<group>"; };
 		B4D82C9D27870B5700741270 /* takePictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takePictures.swift; sourceTree = "<group>"; };
 		B4EF4FFF27ABCE3200D9AEC5 /* CheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewController.swift; sourceTree = "<group>"; };
@@ -108,7 +110,8 @@
 				B4D82C9B277C7A9100741270 /* getPhotoDataFromFirestorage.swift */,
 				B4D82C9D27870B5700741270 /* takePictures.swift */,
 				B46B07EF281996ED0055FBD9 /* selectSaveoptions.swift */,
-				B4D241CD2A2B245200F28FB8 /* NoNeme.swift */,
+				B4D241CF2A2CC7B400F28FB8 /* saveMemoButtons.swift */,
+				B4D241CD2A2B245200F28FB8 /* savePhotoButtons.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,9 +322,10 @@
 				B40CA59A273EDB7600B5134A /* makeMealButton.swift in Sources */,
 				B46BBB5C271484E200ECD1E7 /* signupViewController.swift in Sources */,
 				B4D82C9C277C7A9100741270 /* getPhotoDataFromFirestorage.swift in Sources */,
+				B4D241D02A2CC7B400F28FB8 /* saveMemoButtons.swift in Sources */,
 				B46CBAFD2732156E00251931 /* activityIndicator.swift in Sources */,
 				B4D82C9E27870B5700741270 /* takePictures.swift in Sources */,
-				B4D241CE2A2B245200F28FB8 /* NoNeme.swift in Sources */,
+				B4D241CE2A2B245200F28FB8 /* savePhotoButtons.swift in Sources */,
 				B46B07F0281996ED0055FBD9 /* selectSaveoptions.swift in Sources */,
 				B419F395275A0F79005474A1 /* getMemoDataFromFirebase.swift in Sources */,
 				B4F5CEC526EA325E00EA4B27 /* SceneDelegate.swift in Sources */,
