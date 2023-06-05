@@ -242,7 +242,7 @@ class thedayMorningSavePhotoViewController: HomeViewcontroller {
     let selectImageView = UIImageView()
     let imagePicker = UIImagePickerController()
     var eachMealPhotoData = "\(appDelegate.calendarDate!) morning.jpeg"
-
+    var selectPictures = UIImageView()
 
 
     override func viewDidLoad() {
@@ -288,7 +288,7 @@ class thedayMorningSavePhotoViewController: HomeViewcontroller {
 
         var uploadData  = Data()
 
-        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9))!
+        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9)) ?? selectPictures.image!.jpegData(compressionQuality: 1)!
 
         storageRef.putData(uploadData, metadata: metaData) {
             metaData, Error in
@@ -321,7 +321,357 @@ extension thedayMorningSavePhotoViewController: UIImagePickerControllerDelegate,
         dismiss(animated: true, completion: nil)
     }
 }
-   
+//以上　朝食を記録するコード
+
+//下記　昼食を記録するコード
+
+class selectTheLunchSaveViewcontroller: cameraViewcontroller {
+
+    var leftButtonClose: UIBarButtonItem!
 
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+
+        //Modelから各ボタンのUIコードを参照
+        thedaySelectSaveoptions.makeOptions(mainVC: self, meal:"昼食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
+
+    }
+
+    //"メモを記入する"ボタンのアクション内容　: 画面遷移
+    @objc func selectSaveTextButton(_ sender: UIButton){
+        self.performSegue(withIdentifier: "toThedayLunchSaveMemo", sender: self)
+    }
+
+    //"画像を選択する"ボタンのアクション内容　: 画面遷移
+    @objc func selectSavePhotoButton(_ sender: UIButton){
+        self.performSegue(withIdentifier: "toThedayLunchSavePhoto", sender: self)
+    }
+
+    //バー　"閉じる"ボタンのアクション内容
+    @objc func backSelectSave(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+class thedayLunchSaveMemoViewcontroller: UIViewController {
+
+
+
+    var eachMeal = "\(appDelegate.calendarDate!) lunch"
+    var memo = UITextView()
+    var eachMealPhotoData = "\(appDelegate.calendarDate!) lunch.jpeg"
+    let selectImageView = UIImageView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /*
+         "選択した画像を表示するView"
+         "メモを保存するボタン"
+         "メモ記入欄"
+         "メモ記入時のキーボードを閉じるボタン"
+         */
+        saveMemoButton.makeSaveMemoButton(selectImageView: selectImageView, self: self, saveMorningMemoDataToFirestore: #selector(self.saveMorningMemoDataToFirestore(_:)), memo: memo, closeButtonTapped: #selector(self.closeButtonTapped))
+
+        //firestroreからメモのデータを取得する
+
+        getMemoDataFromFirebase(eachMeal: self.eachMeal,memo: self.memo)
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
+
+
+    }
+    //キーボードを閉じるアクション
+    @objc func closeButtonTapped() {
+        self.view.endEditing(true)
+    }
+
+    //FireStoreへ　メモを保存
+    @objc func saveMorningMemoDataToFirestore(_ sender: Any) {
+
+
+guard let userID = Auth.auth().currentUser?.uid else {return}
+        guard let memoData = memo.text else {return}
+
+        db.collection("users").document(userID).setData(["\(eachMeal)" : memoData], merge: true) { err in
+    if let err = err {
+        print("エラーが起きました\(err)")
+    } else {
+        print("ドキュメントが保存されました")
+
+        //保存時にアラート表示
+        let saveAlert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
+        saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(saveAlert, animated: true, completion: nil)
+
+    }
+}
+}
+}
+
+class thedayLunchSavePhotoViewController: HomeViewcontroller {
+
+    let selectImageView = UIImageView()
+    let imagePicker = UIImagePickerController()
+    var eachMealPhotoData = "\(appDelegate.calendarDate!) lunch.jpeg"
+
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /*
+         "選択した画像を表示するView"
+         "ライブラリーから画像を選択する"
+         "表示している画像で記録する"
+         */
+        savePhotoButton.makeSavePhotoButton(selectImageView:selectImageView,self: self, toImagePicker:#selector(self.toImagePicker(_:)), savePhoto: #selector(self.savePhoto))
+
+        imagePicker.delegate = self
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
+
+    }
+
+    /*"画像を選択する"ボタンのアクション内容
+    （ライブラリーに移動し画像を選択する）*/
+    @objc func toImagePicker(_ sender: Any) {
+        imagePicker.allowsEditing = true
+
+        imagePicker.sourceType = .photoLibrary
+
+        present(imagePicker, animated: true, completion:
+        nil)
+    }
+    //firestorageに画像を保存する
+    @objc func savePhoto () {
+
+
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        //ストレージサーバーのURL
+        let storage = Storage.storage().reference(forURL: "gs://everyonemeal.appspot.com")
+
+        let storageRef = storage.child(userID).child("\(appDelegate.calendarDate!) lunch.jpeg")
+
+        let metaData = StorageMetadata()
+
+        metaData.contentType = "image/jpeg"
+
+        var uploadData  = Data()
+
+        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9))!
+
+        storageRef.putData(uploadData, metadata: metaData) {
+            metaData, Error in
+            if Error != nil {
+                print("アップに失敗しました。\(Error.debugDescription)")
+                return
+            }else {
+                print("アップに成功しました。")
+
+                //保存時にアラート表示
+                let saveAlert = UIAlertController(title: "画像を記録しました", message: "", preferredStyle: .alert)
+                saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(saveAlert, animated: true, completion: nil)
+
+            }
+        }
+    }
+}
+
+//ピックされた画像をビューへ表示する
+extension thedayLunchSavePhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            selectImageView.contentMode = .scaleAspectFit
+            selectImageView.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+//以上　昼食を記録するコード
+
+//下記　夕食を記録するコード
+
+class selectTheDinnerSaveViewcontroller: cameraViewcontroller {
+
+    var leftButtonClose: UIBarButtonItem!
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+
+        //Modelから各ボタンのUIコードを参照
+        thedaySelectSaveoptions.makeOptions(mainVC: self, meal:"夕食", mainSelectSaveTextButton: #selector(self.selectSaveTextButton(_:)), mainSelectSavePhotoButton: #selector(self.selectSavePhotoButton(_:)))
+
+    }
+
+    //"メモを記入する"ボタンのアクション内容　: 画面遷移
+    @objc func selectSaveTextButton(_ sender: UIButton){
+        self.performSegue(withIdentifier: "toThedayDinnerSaveMemo", sender: self)
+    }
+
+    //"画像を選択する"ボタンのアクション内容　: 画面遷移
+    @objc func selectSavePhotoButton(_ sender: UIButton){
+        self.performSegue(withIdentifier: "toThedayDinnerSavePhoto", sender: self)
+    }
+
+    //バー　"閉じる"ボタンのアクション内容
+    @objc func backSelectSave(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+class thedayDinnerSaveMemoViewcontroller: UIViewController {
+
+
+
+    var eachMeal = "\(appDelegate.calendarDate!) dinner"
+    var memo = UITextView()
+    var eachMealPhotoData = "\(appDelegate.calendarDate!) dinner.jpeg"
+    let selectImageView = UIImageView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /*
+         "選択した画像を表示するView"
+         "メモを保存するボタン"
+         "メモ記入欄"
+         "メモ記入時のキーボードを閉じるボタン"
+         */
+        saveMemoButton.makeSaveMemoButton(selectImageView: selectImageView, self: self, saveMorningMemoDataToFirestore: #selector(self.saveMorningMemoDataToFirestore(_:)), memo: memo, closeButtonTapped: #selector(self.closeButtonTapped))
+
+        //firestroreからメモのデータを取得する
+
+        getMemoDataFromFirebase(eachMeal: self.eachMeal,memo: self.memo)
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
+
+
+    }
+    //キーボードを閉じるアクション
+    @objc func closeButtonTapped() {
+        self.view.endEditing(true)
+    }
+
+    //FireStoreへ　メモを保存
+    @objc func saveMorningMemoDataToFirestore(_ sender: Any) {
+
+
+guard let userID = Auth.auth().currentUser?.uid else {return}
+        guard let memoData = memo.text else {return}
+
+        db.collection("users").document(userID).setData(["\(eachMeal)" : memoData], merge: true) { err in
+    if let err = err {
+        print("エラーが起きました\(err)")
+    } else {
+        print("ドキュメントが保存されました")
+
+        //保存時にアラート表示
+        let saveAlert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
+        saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(saveAlert, animated: true, completion: nil)
+
+    }
+}
+}
+}
+
+class thedayDinnerSavePhotoViewController: HomeViewcontroller {
+
+    let selectImageView = UIImageView()
+    let imagePicker = UIImagePickerController()
+    var eachMealPhotoData = "\(appDelegate.calendarDate!) dinner.jpeg"
+
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /*
+         "選択した画像を表示するView"
+         "ライブラリーから画像を選択する"
+         "表示している画像で記録する"
+         */
+        savePhotoButton.makeSavePhotoButton(selectImageView:selectImageView,self: self, toImagePicker:#selector(self.toImagePicker(_:)), savePhoto: #selector(self.savePhoto))
+
+        imagePicker.delegate = self
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
+
+    }
+
+    /*"画像を選択する"ボタンのアクション内容
+    （ライブラリーに移動し画像を選択する）*/
+    @objc func toImagePicker(_ sender: Any) {
+        imagePicker.allowsEditing = true
+
+        imagePicker.sourceType = .photoLibrary
+
+        present(imagePicker, animated: true, completion:
+        nil)
+    }
+    //firestorageに画像を保存する
+    @objc func savePhoto () {
+
+
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        //ストレージサーバーのURL
+        let storage = Storage.storage().reference(forURL: "gs://everyonemeal.appspot.com")
+
+        let storageRef = storage.child(userID).child("\(appDelegate.calendarDate!) dinner.jpeg")
+
+        let metaData = StorageMetadata()
+
+        metaData.contentType = "image/jpeg"
+
+        var uploadData  = Data()
+
+        uploadData = (selectImageView.image?.jpegData(compressionQuality: 0.9))!
+
+        storageRef.putData(uploadData, metadata: metaData) {
+            metaData, Error in
+            if Error != nil {
+                print("アップに失敗しました。\(Error.debugDescription)")
+                return
+            }else {
+                print("アップに成功しました。")
+
+                //保存時にアラート表示
+                let saveAlert = UIAlertController(title: "画像を記録しました", message: "", preferredStyle: .alert)
+                saveAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(saveAlert, animated: true, completion: nil)
+
+            }
+        }
+    }
+}
+
+//ピックされた画像をビューへ表示する
+extension thedayDinnerSavePhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            selectImageView.contentMode = .scaleAspectFit
+            selectImageView.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+//以上　夕食を記録するコード
 
