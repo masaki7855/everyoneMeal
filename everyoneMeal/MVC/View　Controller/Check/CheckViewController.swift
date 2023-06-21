@@ -38,13 +38,13 @@ class CheckViewController: UIViewController {
         checkLabel.center.x = self.CheckScrollView.center.x
         self.CheckScrollView.addSubview(checkLabel)
 
-        //"朝食を確認する"ボタン
-        makeMealButton.selectCheckMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("todayMorningSaveButton:"))
+        //"本日の朝食を確認する"ボタン
+        makeMealButton.selectCheckMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: Selector("todayMorningCheckButton:"))
 
-        //"昼食を確認する"ボタン
-        makeMealButton.selectCheckMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 250, selectEachMeal: Selector("todayMorningSaveButton:"))
-        //"夕食を確認する"ボタン
-        makeMealButton.selectCheckMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 250, selectEachMeal: Selector("todayMorningSaveButton:"))
+        //"本日の昼食を確認する"ボタン
+        makeMealButton.selectCheckMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: Selector("todayMorningCheckButton:"))
+        //"本日の夕食を確認する"ボタン
+        makeMealButton.selectCheckMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: Selector("todayMorningCheckButton:"))
 
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -54,16 +54,100 @@ class CheckViewController: UIViewController {
             action: nil
             )
     }
-    //"朝食を確認する"　ボタンのアクション内容 :画面遷移
-    @objc func todayMorningSaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectTodayMorningSave", sender: self)
+    //"本日の朝食を確認する"　ボタンのアクション内容 :画面遷移
+    @objc func todayMorningCheckButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toTodayMorningCheck", sender: self)
     }
-    //"昼食を確認する"　ボタンのアクション内容 :画面遷移
-    @objc func todayLunchSaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectTodayLunchSave", sender: self)
+    //"本日の昼食を確認する"　ボタンのアクション内容 :画面遷移
+    @objc func todayLunchCheckButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toTodayLunchCheck", sender: self)
     }
-    //"夕食を確認する"　ボタンのアクション内容 :画面遷移
-    @objc func todayDinnerSaveButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toSelectTodayDinnerSave", sender: self)
+    //"本日の夕食を確認する"　ボタンのアクション内容 :画面遷移
+    @objc func todayDinnerCheckButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toTodayDinnerCheck", sender: self)
+    }
+}
+
+class todayMorningCheckViewController: UIViewController {
+
+
+    var eachMeal = "\(getToday()) morning"
+    var memo = UITextView()
+    var eachMealPhotoData = "\(getToday(format: "y.M.d")) morning.jpeg"
+    let selectImageView = UIImageView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /*
+         "選択した画像を表示するView"
+         "メモ記入欄"
+
+         */
+        checkVCButtons.makeCheckVCButtons(selectImageView: selectImageView, self: self, memo: memo)
+
+        //firestroreからメモのデータを取得する
+
+        getMemoDataFromFirebase(eachMeal: self.eachMeal,memo: self.memo)
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
+
+    }
+}
+
+class todayLunchCheckViewController: UIViewController {
+
+
+    var eachMeal = "\(getToday()) lunch"
+    var memo = UITextView()
+    var eachMealPhotoData = "\(getToday(format: "y.M.d")) lunch.jpeg"
+    let selectImageView = UIImageView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /*
+         "選択した画像を表示するView"
+         "メモ記入欄"
+
+         */
+        checkVCButtons.makeCheckVCButtons(selectImageView: selectImageView, self: self, memo: memo)
+
+        //firestroreからメモのデータを取得する
+
+        getMemoDataFromFirebase(eachMeal: self.eachMeal,memo: self.memo)
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
+
+    }
+}
+
+class todayDinnerCheckViewController: UIViewController {
+
+
+    var eachMeal = "\(getToday()) dinner"
+    var memo = UITextView()
+    var eachMealPhotoData = "\(getToday(format: "y.M.d")) dinner.jpeg"
+    let selectImageView = UIImageView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /*
+         "選択した画像を表示するView"
+         "メモ記入欄"
+
+         */
+        checkVCButtons.makeCheckVCButtons(selectImageView: selectImageView, self: self, memo: memo)
+
+        //firestroreからメモのデータを取得する
+
+        getMemoDataFromFirebase(eachMeal: self.eachMeal,memo: self.memo)
+
+        //データ取得（保存している画像があれば読み込み、表示する）
+        getPhotoDataFromFireStorage(eachMealPhotoData: self.eachMealPhotoData, photo: selectImageView)
+
     }
 }

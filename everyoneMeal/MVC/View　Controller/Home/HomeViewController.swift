@@ -111,13 +111,13 @@ class selectEachMealViewcontroller: HomeViewcontroller {
         selectDayLabel(uiLabel: selectDay, uiViewController: self)
         
         //"朝食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: #selector(self.theMorningSaveButton(_:)))
+        makeMealButton.selectSaveMeal(selectSaveClass: self, meal: "朝食", frameX: 200, frameY: 250, selectEachMeal: #selector(self.theMorningSaveButton(_:)))
 
         //"昼食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: #selector(self.theLunchSaveButton(_:)))
+        makeMealButton.selectSaveMeal(selectSaveClass: self, meal: "昼食", frameX: 200, frameY: 350, selectEachMeal: #selector(self.theLunchSaveButton(_:)))
 
         //"夕食を記入する"ボタン
-        makeMealButton.selectMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: #selector(self.theDinnerSaveButton(_:)))
+        makeMealButton.selectSaveMeal(selectSaveClass: self, meal: "夕食", frameX: 200, frameY: 450, selectEachMeal: #selector(self.theDinnerSaveButton(_:)))
         
         //"Back"ボタン　文字非表示
         self.navigationItem.backBarButtonItem = UIBarButtonItem(

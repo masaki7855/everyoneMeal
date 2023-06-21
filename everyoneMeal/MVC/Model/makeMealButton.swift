@@ -16,7 +16,7 @@ class selectMealButton: UIViewController {
         let selectSaveButton = UIButton()
 
 
-        selectSaveButton.setTitle("\(meal)を記入する", for: UIControl.State.normal)
+        selectSaveButton.setTitle("本日の\(meal)を記入する", for: UIControl.State.normal)
 
         selectSaveButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
@@ -38,7 +38,7 @@ class selectMealButton: UIViewController {
         let selectSaveButton = UIButton()
 
 
-        selectSaveButton.setTitle("\(meal)を確認する", for: UIControl.State.normal)
+        selectSaveButton.setTitle("本日の\(meal)を確認する", for: UIControl.State.normal)
 
         selectSaveButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
 
@@ -78,4 +78,5 @@ class selectMealButton: UIViewController {
 //    }
 }
 let makeMealButton = selectMealButton()
+
 

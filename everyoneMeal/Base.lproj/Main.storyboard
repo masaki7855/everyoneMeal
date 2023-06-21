@@ -414,6 +414,22 @@
             </objects>
             <point key="canvasLocation" x="4229" y="-649"/>
         </scene>
+        <!--Today Morning Check View Controller-->
+        <scene sceneID="Djf-Bw-rP0">
+            <objects>
+                <viewController id="wNx-kN-EfX" customClass="todayMorningCheckViewController" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xIj-bg-deU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="RTT-vV-e88"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZRg-Qx-zVr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TCM-WR-Fns" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5496" y="3662"/>
+        </scene>
         <!--Check View Controller-->
         <scene sceneID="2ge-qs-kfz">
             <objects>
@@ -455,11 +471,14 @@
                     <navigationItem key="navigationItem" id="MgT-k3-dt4"/>
                     <connections>
                         <outlet property="CheckScrollView" destination="zya-Bd-X6c" id="RvW-ug-P8z"/>
+                        <segue destination="wNx-kN-EfX" kind="show" identifier="toTodayMorningCheck" id="16O-hc-faG"/>
+                        <segue destination="7R9-4f-dPg" kind="show" identifier="toTodayLunchCheck" id="Tv8-Gi-Z6F"/>
+                        <segue destination="UCl-ci-rwh" kind="show" identifier="toTodayDinnerCheck" id="GcL-qG-buH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esx-1T-vUg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2114" y="2394"/>
+            <point key="canvasLocation" x="4080" y="4959"/>
         </scene>
         <!--設定-->
         <scene sceneID="gdc-9t-aKd">
@@ -511,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VqB-cl-LFy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="683" y="3178"/>
+            <point key="canvasLocation" x="454" y="4814"/>
         </scene>
         <!--記録する-->
         <scene sceneID="EAL-GC-5wD">
@@ -616,7 +635,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9NV-ns-sVO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="2394"/>
+            <point key="canvasLocation" x="1990" y="4959"/>
         </scene>
         <!--Today Lunch Save Memo View Controller-->
         <scene sceneID="akl-XL-d2f">
@@ -793,6 +812,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEb-Zo-caQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5496" y="-2995"/>
+        </scene>
+        <!--Today Dinner Check View Controller-->
+        <scene sceneID="dDR-ou-DVe">
+            <objects>
+                <viewController id="UCl-ci-rwh" customClass="todayDinnerCheckViewController" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="REy-Ss-HJq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ZD6-pQ-nXx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Uup-ou-z0K"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wbl-Tw-0Oo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5496" y="6131"/>
+        </scene>
+        <!--Today Lunch Check View Controller-->
+        <scene sceneID="2Vt-yL-zPs">
+            <objects>
+                <viewController id="7R9-4f-dPg" customClass="todayLunchCheckViewController" customModule="everyoneMeal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NYY-jV-6fQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8ep-jK-yiP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Q4x-fT-1Pq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4FW-Db-Zp0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5496" y="4959"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

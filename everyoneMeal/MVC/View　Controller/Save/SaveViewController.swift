@@ -21,7 +21,7 @@ class SaveViewController: UIViewController {
         let saveTitle = UILabel()
         saveTitle.text = "記録する"
         saveTitle.font = UIFont(name: "Optima-Bold", size: 30)
-        saveTitle.frame = CGRect(x: 200, y: 50, width: 200, height: 50)
+        saveTitle.frame = CGRect(x: 200, y: 75, width: 200, height: 50)
         saveTitle.textAlignment = NSTextAlignment.center
         saveTitle.center.x = self.view.center.x
         self.view.addSubview(saveTitle)
